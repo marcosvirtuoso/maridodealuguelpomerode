@@ -54,7 +54,7 @@ export default function Hero() {
           </p>
 
           <p className="text-sm text-gold/90 font-medium mb-10 max-w-md">
-            Não somos o mais barato — somos a escolha mais segura e inteligente para sua família. ✓
+            Solução mais eficiente e segura que você procura para o seu lar. ✓
           </p>
 
           {/* CTA Buttons */}
