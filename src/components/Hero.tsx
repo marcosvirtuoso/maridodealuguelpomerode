@@ -9,7 +9,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Apresentação - Marido de Aluguel Pomerode"
     >
-      {/* Solid dark background */}
+      {/* Background */}
       <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
 
       {/* Decorative gradient orbs */}
@@ -24,24 +24,11 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* ── Full-body image — anchored to bottom right (desktop only) ── */}
-      <div
-        className="hidden lg:block absolute bottom-0 right-8 xl:right-16 z-10"
-        style={{ height: "92vh", width: "380px" }}
-      >
-        <img
-          src={heroImage}
-          alt="Marcos, profissional de reparos residenciais em Pomerode SC"
-          className="h-full w-full object-contain object-bottom drop-shadow-2xl"
-          fetchPriority="high"
-        />
-      </div>
+      {/* ── Two-column layout ── */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 flex flex-col lg:flex-row items-center justify-between gap-8 min-h-screen">
 
-      {/* ── Main content ── */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-0 flex flex-col lg:flex-row items-center gap-8 min-h-screen">
-
-        {/* ── Text content ── */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:flex-1 pb-16 lg:pb-24 pt-8">
+        {/* ── Left: Text content ── */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:flex-1 py-24">
 
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-gold/10 mb-6 backdrop-blur-sm">
@@ -114,13 +101,14 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Mobile image (visible only on small screens) ── */}
-        <div className="lg:hidden flex justify-center w-full mt-4">
+        {/* ── Right: Character image ── */}
+        <div className="lg:flex-shrink-0 flex items-end justify-center self-stretch" style={{ width: "400px" }}>
           <img
             src={heroImage}
             alt="Marcos, profissional de reparos residenciais em Pomerode SC"
-            className="w-64 sm:w-80 h-auto object-contain drop-shadow-2xl"
+            className="w-full object-contain object-bottom drop-shadow-2xl"
             fetchPriority="high"
+            style={{ maxHeight: "80vh" }}
           />
         </div>
 
