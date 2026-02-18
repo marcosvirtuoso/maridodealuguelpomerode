@@ -12,7 +12,7 @@ const diferenciais = [
     icon: <Star className="w-8 h-8" />,
     title: "Qualidade Comprovada",
     description:
-      "Não somos o mais barato — somos a escolha mais eficiente e duradoura. Serviços feitos para não voltar mais. Satisfação garantida ou refazemos.",
+      "Solução mais eficiente e segura que você procura para o seu lar. Serviços feitos para não voltar mais. Satisfação garantida ou refazemos.",
     highlight: "Garantia nos serviços",
   },
   {

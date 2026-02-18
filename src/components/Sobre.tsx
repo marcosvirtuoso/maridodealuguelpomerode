@@ -84,7 +84,7 @@ export default function Sobre() {
 
             <blockquote className="border-l-4 border-gold pl-5 py-1">
               <p className="text-foreground font-medium italic">
-                "Não somos o mais barato — somos a solução mais eficiente, segura e duradoura para o seu lar."
+                "Solução mais eficiente e segura que você procura para o seu lar."
               </p>
               <footer className="text-gold text-sm font-semibold mt-2">— Marcos</footer>
             </blockquote>
