@@ -8,6 +8,7 @@ export default function Hero() {
       id="inicio"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Apresentação - Marido de Aluguel Pomerode"
+      style={{ minHeight: "100vh" }}
     >
       {/* Background */}
       <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
@@ -24,8 +25,8 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* ── Two-column layout ── */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 flex flex-col lg:flex-row items-center justify-between gap-8 min-h-screen">
+      {/* ── Main content ── */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 flex flex-col lg:flex-row items-stretch justify-between gap-8 min-h-screen">
 
         {/* ── Left: Text content ── */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:flex-1 py-24">
@@ -101,14 +102,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Right: Character image ── */}
-        <div className="lg:flex-shrink-0 flex items-end justify-center self-stretch" style={{ width: "400px" }}>
+        {/* ── Right: Character image — absolute, full section height ── */}
+        <div
+          className="hidden lg:block absolute right-0 top-0 bottom-0 z-0"
+          style={{ width: "42%" }}
+        >
           <img
             src={heroImage}
             alt="Marcos, profissional de reparos residenciais em Pomerode SC"
-            className="w-full object-contain object-bottom drop-shadow-2xl"
+            className="w-full h-full object-contain object-bottom"
             fetchPriority="high"
-            style={{ maxHeight: "80vh" }}
           />
         </div>
 
