@@ -16,11 +16,11 @@ export default function Sobre() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] max-w-sm mx-auto lg:max-w-none">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-sm mx-auto lg:max-w-none bg-muted/30 flex items-end justify-center" style={{ minHeight: "520px" }}>
               <img
                 src={heroImage}
                 alt="Marcos — Marido de Aluguel em Pomerode SC"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-auto object-contain object-bottom"
                 loading="lazy"
                 itemProp="image"
               />
