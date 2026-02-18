@@ -101,13 +101,13 @@ export default function Hero() {
         </div>
 
         {/* ── Full-body character image ── */}
-        <div className="lg:flex-shrink-0 lg:w-[380px] xl:w-[440px] flex items-end justify-center self-end">
+        <div className="lg:flex-shrink-0 lg:w-[420px] xl:w-[480px] flex items-end justify-center self-end mx-auto lg:mx-0">
           <img
             src={heroImage}
             alt="Marcos, profissional de reparos residenciais em Pomerode SC"
-            className="w-56 sm:w-72 lg:w-full h-auto object-contain drop-shadow-2xl"
+            className="block mx-auto w-56 sm:w-80 lg:w-full h-auto object-contain drop-shadow-2xl"
             fetchPriority="high"
-            style={{ maxHeight: "85vh", width: "100%", objectPosition: "center top" }}
+            style={{ maxHeight: "88vh", objectFit: "contain", objectPosition: "center center" }}
           />
         </div>
       </div>
