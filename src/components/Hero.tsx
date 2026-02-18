@@ -24,7 +24,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-0 flex flex-col lg:flex-row items-center lg:items-end gap-8 min-h-screen">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-0 flex flex-col lg:flex-row items-center lg:items-end gap-8 min-h-screen overflow-visible">
 
         {/* ── Text content ── */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:flex-1 pb-16 lg:pb-24 pt-8">
@@ -101,13 +101,13 @@ export default function Hero() {
         </div>
 
         {/* ── Full-body character image ── */}
-        <div className="lg:flex-shrink-0 lg:w-[420px] xl:w-[480px] flex items-end justify-center self-end">
+        <div className="lg:flex-shrink-0 lg:w-[380px] xl:w-[440px] flex items-end justify-center self-end">
           <img
             src={heroImage}
             alt="Marcos, profissional de reparos residenciais em Pomerode SC"
-            className="w-64 sm:w-80 lg:w-full h-auto object-contain object-bottom drop-shadow-2xl"
+            className="w-56 sm:w-72 lg:w-full h-auto object-contain drop-shadow-2xl"
             fetchPriority="high"
-            style={{ maxHeight: "calc(100vh - 80px)" }}
+            style={{ maxHeight: "85vh", width: "100%", objectPosition: "center top" }}
           />
         </div>
       </div>
