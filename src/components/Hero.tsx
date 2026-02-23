@@ -102,15 +102,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Right: Character image — absolute, full section height ── */}
+        {/* ── Right: Character image — absolute, vertically centered ── */}
         <div
-          className="hidden lg:block absolute right-0 top-0 bottom-0 z-0"
+          className="hidden lg:flex absolute right-0 top-0 bottom-0 z-0 items-center justify-center"
           style={{ width: "42%" }}
         >
           <img
             src={heroImage}
             alt="Marcos, profissional de reparos residenciais em Pomerode SC"
-            className="w-full h-full object-contain object-bottom"
+            className="max-h-[85vh] w-auto object-contain"
             fetchPriority="high"
           />
         </div>
