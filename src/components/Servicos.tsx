@@ -61,7 +61,7 @@ const categories: ServiceCategory[] = [
     borderColor: "hsl(160 60% 38% / 0.30)",
     services: [
       { name: "Instalação de vaso sanitário", description: "Completo com fixação e vedação anti-odor", seoKeywords: "instalação vaso sanitário Pomerode" },
-      { name: "Instalação de aquecedor de água", description: "Aquecedores convencionais a gás e elétrico", seoKeywords: "instalação aquecedor água Pomerode" },
+      { name: "Instalação de aquecedor de água", description: "Aquecedores elétricos convencionais", seoKeywords: "instalação aquecedor água Pomerode" },
       { name: "Instalação de box de banheiro", description: "Fixação de trilhos, perfis e vidros", seoKeywords: "instalação box banheiro Pomerode" },
       { name: "Instalação de espelhos e acessórios", description: "Porta-toalha, toalheiro, cabideiro e saboneteira", seoKeywords: "instalação acessórios banheiro Pomerode" },
     ],
