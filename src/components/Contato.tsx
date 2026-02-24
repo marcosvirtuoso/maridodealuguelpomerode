@@ -101,7 +101,7 @@ function ContactForm() {
           maxLength={100}
           aria-invalid={!!errors.nome}
           aria-describedby={errors.nome ? "nome-error" : undefined}
-          className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-primary-foreground placeholder:text-primary-foreground/35 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all ${
+          className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-primary-foreground placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all ${
             errors.nome
               ? "border-red-400/60 bg-red-500/5"
               : "border-primary-foreground/15 focus:border-gold/50"
@@ -132,7 +132,7 @@ function ContactForm() {
           maxLength={20}
           aria-invalid={!!errors.whatsapp}
           aria-describedby={errors.whatsapp ? "whatsapp-error" : "whatsapp-hint"}
-          className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-primary-foreground placeholder:text-primary-foreground/35 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all ${
+          className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-primary-foreground placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all ${
             errors.whatsapp
               ? "border-red-400/60 bg-red-500/5"
               : "border-primary-foreground/15 focus:border-gold/50"
@@ -166,7 +166,7 @@ function ContactForm() {
           maxLength={800}
           aria-invalid={!!errors.mensagem}
           aria-describedby={errors.mensagem ? "mensagem-error" : "mensagem-hint"}
-          className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-primary-foreground placeholder:text-primary-foreground/35 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all resize-none ${
+          className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-primary-foreground placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all resize-none ${
             errors.mensagem
               ? "border-red-400/60 bg-red-500/5"
               : "border-primary-foreground/15 focus:border-gold/50"
