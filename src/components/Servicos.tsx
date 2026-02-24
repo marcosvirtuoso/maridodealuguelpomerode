@@ -1,4 +1,4 @@
-import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Flame, Wrench } from "lucide-react";
+import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench } from "lucide-react";
 
 interface ServiceItem {
   name: string;
@@ -96,20 +96,6 @@ const categories: ServiceCategory[] = [
       { name: "Fixação de quadros e espelhos", description: "Quadros pesados, espelhos e obras de arte", seoKeywords: "fixação quadro espelho Pomerode" },
       { name: "Instalação de balcões e bancadas", description: "Fixação e nivelamento de balcões e bancadas", seoKeywords: "instalação balcão bancada Pomerode" },
       { name: "Instalação de persianas e cortinas", description: "Trilhos, varões e todos os tipos de persiana", seoKeywords: "instalação persiana cortina Pomerode" },
-    ],
-  },
-  {
-    id: "aquecedor",
-    icon: <Flame className="w-7 h-7" />,
-    title: "Aquecimento",
-    subtitle: "Instalação e manutenção de aquecedores",
-    color: "hsl(0 75% 50%)",
-    bgColor: "hsl(0 75% 50% / 0.10)",
-    borderColor: "hsl(0 75% 50% / 0.30)",
-    services: [
-      { name: "Instalação de aquecedor a gás", description: "Aquecedores Lorenzetti, Rinnai, Bosch e outros", seoKeywords: "instalação aquecedor gás Pomerode" },
-      { name: "Instalação de aquecedor elétrico", description: "Ducha elétrica e chuveiro multitemperatura", seoKeywords: "instalação aquecedor elétrico Pomerode" },
-      { name: "Manutenção de aquecedores", description: "Revisão, limpeza e ajuste de aquecedores", seoKeywords: "manutenção aquecedor Pomerode" },
     ],
   },
 ];
