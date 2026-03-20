@@ -102,16 +102,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Right: Character image — absolute, vertically centered ── */}
+        {/* ── Right: Video — absolute, vertically centered ── */}
         <div
           className="hidden lg:flex absolute right-0 top-0 bottom-0 z-0 items-center justify-center"
           style={{ width: "42%" }}>
 
-          <img
-
-            alt="Marcos, profissional de reparos residenciais em Pomerode SC"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="max-h-[85vh] w-auto object-contain rounded-2xl"
-            fetchPriority="high" src="/lovable-uploads/685b6eb6-fcfc-48e1-96ca-a87dafb9cda7.jpg" />
+            src="/videos/hero-video.mp4"
+          />
 
         </div>
 
