@@ -44,9 +44,9 @@ export default function Hero() {
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground max-w-2xl mb-6"
             style={{ fontFamily: "'Playfair Display', serif" }}>
 
-            Instalações e Reparos Residenciais{" "}
-            <span className="text-gradient-gold">Profissionais</span>{" "}
-            em Pomerode
+            Instalações e Reparos Residenciais em{" "}
+            <span className="text-gradient-gold">Pomerode</span>{" "}
+            e Região.
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-primary-foreground/80 max-w-lg mb-4 leading-relaxed">
