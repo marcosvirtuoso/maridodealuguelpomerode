@@ -108,10 +108,10 @@ export default function Hero() {
           style={{ width: "42%" }}>
 
           <img
-            src={heroImage}
+
             alt="Marcos, profissional de reparos residenciais em Pomerode SC"
             className="max-h-[85vh] w-auto object-contain rounded-2xl"
-            fetchPriority="high" />
+            fetchPriority="high" src="/lovable-uploads/685b6eb6-fcfc-48e1-96ca-a87dafb9cda7.jpg" />
 
         </div>
 
