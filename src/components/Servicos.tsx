@@ -75,7 +75,7 @@ const categories: ServiceCategory[] = [
     bgColor: "hsl(280 50% 48% / 0.10)",
     borderColor: "hsl(280 50% 48% / 0.30)",
     services: [
-      { name: "Montagem de armários e guarda-roupas", description: "Todos os modelos e marcas, incluindo Tok&Stok, IKEA", seoKeywords: "montagem guarda-roupa armário Pomerode" },
+      { name: "Montagem de armários e guarda-roupas", description: "Todos os modelos e marcas", seoKeywords: "montagem guarda-roupa armário Pomerode" },
       { name: "Montagem de camas e berços", description: "Estruturas de casal, solteiro, beliches e berços", seoKeywords: "montagem cama berço Pomerode" },
       { name: "Montagem de racks e estantes", description: "TVs, livros, home theater e decorativos", seoKeywords: "montagem rack estante Pomerode" },
       { name: "Montagem de escrivaninhas e mesas", description: "Escritório, sala de jantar e sala de estudos", seoKeywords: "montagem mesa escritório Pomerode" },
