@@ -13,12 +13,11 @@ const formSchema = z.object({
     .trim()
     .min(2, { message: "Por favor, informe seu nome completo." })
     .max(100, { message: "Nome muito longo." }),
-  whatsapp: z
+  cidade: z
     .string()
     .trim()
-    .min(10, { message: "Informe um número de WhatsApp válido com DDD." })
-    .max(20, { message: "Número muito longo." })
-    .regex(/^[\d\s()\-+]+$/, { message: "Use apenas números, espaços, +, ( e )." }),
+    .min(2, { message: "Por favor, informe sua cidade." })
+    .max(100, { message: "Nome da cidade muito longo." }),
   mensagem: z
     .string()
     .trim()
