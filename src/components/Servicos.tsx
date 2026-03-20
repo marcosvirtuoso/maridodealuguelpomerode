@@ -79,7 +79,7 @@ const categories: ServiceCategory[] = [
       { name: "Montagem de camas e berços", description: "Estruturas de casal, solteiro, beliches e berços", seoKeywords: "montagem cama berço Pomerode" },
       { name: "Montagem de racks e estantes", description: "TVs, livros, home theater e decorativos", seoKeywords: "montagem rack estante Pomerode" },
       { name: "Montagem de escrivaninhas e mesas", description: "Escritório, sala de jantar e sala de estudos", seoKeywords: "montagem mesa escritório Pomerode" },
-      { name: "Montagem de cozinhas planejadas", description: "Gabinetes, módulos e acessórios", seoKeywords: "montagem cozinha planejada Pomerode" },
+      { name: "Montagem de Móveis para Cozinha", description: "Pias, armários, módulos e acessórios", seoKeywords: "montagem móveis cozinha Pomerode" },
     ],
   },
   {
