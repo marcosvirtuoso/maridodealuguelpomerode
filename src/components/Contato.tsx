@@ -40,7 +40,7 @@ function ContactForm() {
   const mensagemValue = watch("mensagem") ?? "";
 
   const onSubmit = (data: FormData) => {
-    const text = `Olá Marcos! Me chamo *${data.nome}* e entrei em contato pelo site.\n\n📱 Meu WhatsApp: ${data.whatsapp}\n\n📝 Mensagem:\n${data.mensagem}\n\nGostaria de agendar um serviço!`;
+    const text = `Olá Marcos! Me chamo *${data.nome}*, sou de *${data.cidade}* e entrei em contato pelo site.\n\n📝 Mensagem:\n${data.mensagem}\n\nGostaria de agendar um serviço!`;
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
