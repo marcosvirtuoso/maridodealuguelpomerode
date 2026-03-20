@@ -44,7 +44,7 @@ const categories: ServiceCategory[] = [
     borderColor: "hsl(210 80% 45% / 0.30)",
     services: [
       { name: "Instalação de torneiras", description: "Cozinha, banheiro, lavanderia e área externa", seoKeywords: "instalação torneira Pomerode" },
-      { name: "Instalação de chuveiros", description: "Elétrico ou a gás, com segurança total", seoKeywords: "instalação chuveiro Pomerode" },
+      { name: "Instalação de chuveiros", description: "Elétrico com Kit Wago e segurança", seoKeywords: "instalação chuveiro Pomerode" },
       { name: "Reparo de vazamentos", description: "Identificação e correção de vazamentos em tubulações", seoKeywords: "reparo vazamento encanamento Pomerode" },
       { name: "Instalação de pias e lavatórios", description: "Bancadas, cuba, sifão e conexões completas", seoKeywords: "instalação pia lavatório Pomerode" },
       { name: "Reparos em caixa acoplada", description: "Manutenção e reparo do mecanismo de descarga", seoKeywords: "reparo caixa acoplada Pomerode" },
@@ -62,7 +62,7 @@ const categories: ServiceCategory[] = [
     services: [
       { name: "Instalação de vaso sanitário", description: "Completo com fixação e vedação anti-odor", seoKeywords: "instalação vaso sanitário Pomerode" },
       { name: "Instalação de aquecedor de água", description: "Aquecedores elétricos convencionais", seoKeywords: "instalação aquecedor água Pomerode" },
-      { name: "Instalação de box de banheiro", description: "Fixação de trilhos, perfis e vidros", seoKeywords: "instalação box banheiro Pomerode" },
+      { name: "Instalação de Pias, cubas, Torneiras", description: "Mangueiras de entrada, sifão de saída", seoKeywords: "instalação pia cuba torneira Pomerode" },
       { name: "Instalação de espelhos e acessórios", description: "Porta-toalha, toalheiro, cabideiro e saboneteira", seoKeywords: "instalação acessórios banheiro Pomerode" },
     ],
   },
@@ -75,11 +75,11 @@ const categories: ServiceCategory[] = [
     bgColor: "hsl(280 50% 48% / 0.10)",
     borderColor: "hsl(280 50% 48% / 0.30)",
     services: [
-      { name: "Montagem de armários e guarda-roupas", description: "Todos os modelos e marcas, incluindo Tok&Stok, IKEA", seoKeywords: "montagem guarda-roupa armário Pomerode" },
+      { name: "Montagem de armários e guarda-roupas", description: "Todos os modelos e marcas", seoKeywords: "montagem guarda-roupa armário Pomerode" },
       { name: "Montagem de camas e berços", description: "Estruturas de casal, solteiro, beliches e berços", seoKeywords: "montagem cama berço Pomerode" },
       { name: "Montagem de racks e estantes", description: "TVs, livros, home theater e decorativos", seoKeywords: "montagem rack estante Pomerode" },
       { name: "Montagem de escrivaninhas e mesas", description: "Escritório, sala de jantar e sala de estudos", seoKeywords: "montagem mesa escritório Pomerode" },
-      { name: "Montagem de cozinhas planejadas", description: "Gabinetes, módulos e acessórios", seoKeywords: "montagem cozinha planejada Pomerode" },
+      { name: "Montagem de Móveis para Cozinha", description: "Pias, armários, módulos e acessórios", seoKeywords: "montagem móveis cozinha Pomerode" },
     ],
   },
   {
