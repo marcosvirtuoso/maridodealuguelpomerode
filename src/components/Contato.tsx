@@ -115,37 +115,37 @@ function ContactForm() {
         )}
       </div>
 
-      {/* WhatsApp */}
+      {/* Cidade */}
       <div className="flex flex-col gap-1.5">
         <label
-          htmlFor="contact-whatsapp"
+          htmlFor="contact-cidade"
           className="text-sm font-semibold text-primary-foreground/80"
         >
-          Seu WhatsApp <span className="text-gold" aria-label="campo obrigatório">*</span>
+          Sua Cidade <span className="text-gold" aria-label="campo obrigatório">*</span>
         </label>
         <input
-          id="contact-whatsapp"
-          type="tel"
-          autoComplete="tel"
-          placeholder="(47) 9xxxx-xxxx"
-          maxLength={20}
-          aria-invalid={!!errors.whatsapp}
-          aria-describedby={errors.whatsapp ? "whatsapp-error" : "whatsapp-hint"}
+          id="contact-cidade"
+          type="text"
+          autoComplete="address-level2"
+          placeholder="Ex: Pomerode"
+          maxLength={100}
+          aria-invalid={!!errors.cidade}
+          aria-describedby={errors.cidade ? "cidade-error" : "cidade-hint"}
           className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-black placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all ${
-            errors.whatsapp
+            errors.cidade
               ? "border-red-400/60 bg-red-500/5"
               : "border-primary-foreground/15 focus:border-gold/50"
           }`}
-          {...register("whatsapp")}
+          {...register("cidade")}
         />
-        {errors.whatsapp ? (
-          <p id="whatsapp-error" className="flex items-center gap-1.5 text-xs text-red-400" role="alert">
+        {errors.cidade ? (
+          <p id="cidade-error" className="flex items-center gap-1.5 text-xs text-red-400" role="alert">
             <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
-            {errors.whatsapp.message}
+            {errors.cidade.message}
           </p>
         ) : (
-          <p id="whatsapp-hint" className="text-xs text-primary-foreground/40">
-            Com DDD — para que Marcos possa te chamar de volta.
+          <p id="cidade-hint" className="text-xs text-primary-foreground/40">
+            Para sabermos sua localização.
           </p>
         )}
       </div>
