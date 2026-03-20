@@ -13,12 +13,11 @@ const formSchema = z.object({
     .trim()
     .min(2, { message: "Por favor, informe seu nome completo." })
     .max(100, { message: "Nome muito longo." }),
-  whatsapp: z
+  cidade: z
     .string()
     .trim()
-    .min(10, { message: "Informe um número de WhatsApp válido com DDD." })
-    .max(20, { message: "Número muito longo." })
-    .regex(/^[\d\s()\-+]+$/, { message: "Use apenas números, espaços, +, ( e )." }),
+    .min(2, { message: "Por favor, informe sua cidade." })
+    .max(100, { message: "Nome da cidade muito longo." }),
   mensagem: z
     .string()
     .trim()
@@ -41,7 +40,7 @@ function ContactForm() {
   const mensagemValue = watch("mensagem") ?? "";
 
   const onSubmit = (data: FormData) => {
-    const text = `Olá Marcos! Me chamo *${data.nome}* e entrei em contato pelo site.\n\n📱 Meu WhatsApp: ${data.whatsapp}\n\n📝 Mensagem:\n${data.mensagem}\n\nGostaria de agendar um serviço!`;
+    const text = `Olá Marcos! Me chamo *${data.nome}*, sou de *${data.cidade}* e entrei em contato pelo site.\n\n📝 Mensagem:\n${data.mensagem}\n\nGostaria de agendar um serviço!`;
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
@@ -116,37 +115,37 @@ function ContactForm() {
         )}
       </div>
 
-      {/* WhatsApp */}
+      {/* Cidade */}
       <div className="flex flex-col gap-1.5">
         <label
-          htmlFor="contact-whatsapp"
+          htmlFor="contact-cidade"
           className="text-sm font-semibold text-primary-foreground/80"
         >
-          Seu WhatsApp <span className="text-gold" aria-label="campo obrigatório">*</span>
+          Sua Cidade <span className="text-gold" aria-label="campo obrigatório">*</span>
         </label>
         <input
-          id="contact-whatsapp"
-          type="tel"
-          autoComplete="tel"
-          placeholder="(47) 9xxxx-xxxx"
-          maxLength={20}
-          aria-invalid={!!errors.whatsapp}
-          aria-describedby={errors.whatsapp ? "whatsapp-error" : "whatsapp-hint"}
+          id="contact-cidade"
+          type="text"
+          autoComplete="address-level2"
+          placeholder="Ex: Pomerode"
+          maxLength={100}
+          aria-invalid={!!errors.cidade}
+          aria-describedby={errors.cidade ? "cidade-error" : "cidade-hint"}
           className={`w-full rounded-xl px-4 py-3 text-sm bg-primary-foreground/8 border text-black placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all ${
-            errors.whatsapp
+            errors.cidade
               ? "border-red-400/60 bg-red-500/5"
               : "border-primary-foreground/15 focus:border-gold/50"
           }`}
-          {...register("whatsapp")}
+          {...register("cidade")}
         />
-        {errors.whatsapp ? (
-          <p id="whatsapp-error" className="flex items-center gap-1.5 text-xs text-red-400" role="alert">
+        {errors.cidade ? (
+          <p id="cidade-error" className="flex items-center gap-1.5 text-xs text-red-400" role="alert">
             <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
-            {errors.whatsapp.message}
+            {errors.cidade.message}
           </p>
         ) : (
-          <p id="whatsapp-hint" className="text-xs text-primary-foreground/40">
-            Com DDD — para que Marcos possa te chamar de volta.
+          <p id="cidade-hint" className="text-xs text-primary-foreground/40">
+            Para sabermos sua localização.
           </p>
         )}
       </div>
