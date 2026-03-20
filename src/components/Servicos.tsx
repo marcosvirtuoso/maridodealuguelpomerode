@@ -44,7 +44,7 @@ const categories: ServiceCategory[] = [
     borderColor: "hsl(210 80% 45% / 0.30)",
     services: [
       { name: "Instalação de torneiras", description: "Cozinha, banheiro, lavanderia e área externa", seoKeywords: "instalação torneira Pomerode" },
-      { name: "Instalação de chuveiros", description: "Elétrico ou a gás, com segurança total", seoKeywords: "instalação chuveiro Pomerode" },
+      { name: "Instalação de chuveiros", description: "Elétrico com Kit Wago e segurança", seoKeywords: "instalação chuveiro Pomerode" },
       { name: "Reparo de vazamentos", description: "Identificação e correção de vazamentos em tubulações", seoKeywords: "reparo vazamento encanamento Pomerode" },
       { name: "Instalação de pias e lavatórios", description: "Bancadas, cuba, sifão e conexões completas", seoKeywords: "instalação pia lavatório Pomerode" },
       { name: "Reparos em caixa acoplada", description: "Manutenção e reparo do mecanismo de descarga", seoKeywords: "reparo caixa acoplada Pomerode" },
