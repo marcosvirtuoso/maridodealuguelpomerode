@@ -105,7 +105,7 @@ export default function AdminServicePageEditor() {
     }
   }, [page]);
 
-  const slug = isEditing && page ? page.slug : (prefilledSlug || slugify(serviceName));
+  // slug is now editable state
 
   const saveMutation = useMutation({
     mutationFn: async (publishNow: boolean) => {
