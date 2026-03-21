@@ -1,4 +1,4 @@
-import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench } from "lucide-react";
+import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench, WashingMachine } from "lucide-react";
 
 interface ServiceItem {
   name: string;
@@ -96,6 +96,22 @@ const categories: ServiceCategory[] = [
       { name: "Fixação de quadros e espelhos", description: "Quadros pesados, espelhos e obras de arte", seoKeywords: "fixação quadro espelho Pomerode" },
       { name: "Instalação de balcões e bancadas", description: "Fixação e nivelamento de balcões e bancadas", seoKeywords: "instalação balcão bancada Pomerode" },
       { name: "Instalação de persianas e cortinas", description: "Trilhos, varões e todos os tipos de persiana", seoKeywords: "instalação persiana cortina Pomerode" },
+    ],
+  },
+  {
+    id: "utilidades",
+    icon: <WashingMachine className="w-7 h-7" />,
+    title: "Utilidades Domésticas",
+    subtitle: "Instalação, reparos em geral",
+    color: "hsl(175 55% 40%)",
+    bgColor: "hsl(175 55% 40% / 0.10)",
+    borderColor: "hsl(175 55% 40% / 0.30)",
+    services: [
+      { name: "Instalação de Lava-louça", description: "Todas as marcas sem complicação", seoKeywords: "instalação lava-louça Pomerode" },
+      { name: "Instalação de Máquina de Lavar Roupa", description: "Todas as marcas e modelos", seoKeywords: "instalação máquina lavar roupa Pomerode" },
+      { name: "Máquina Lava e Seca", description: "Verificação de circuito de 20A com disjuntor", seoKeywords: "instalação máquina lava e seca Pomerode" },
+      { name: "Instalação de Coifa de Ilha", description: "Todas as marcas, fixação segura, nivelamento a laser", seoKeywords: "instalação coifa ilha Pomerode" },
+      { name: "Coifa de Parede", description: "Todas as marcas, passagem de circuito elétrico", seoKeywords: "instalação coifa parede Pomerode" },
     ],
   },
 ];
