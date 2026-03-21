@@ -11,8 +11,11 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminCategories from "./pages/AdminCategories";
 import AdminArticles from "./pages/AdminArticles";
 import AdminArticleEditor from "./pages/AdminArticleEditor";
+import AdminServicePages from "./pages/AdminServicePages";
+import AdminServicePageEditor from "./pages/AdminServicePageEditor";
 import ArticlePage from "./pages/ArticlePage";
 import CategoryPage from "./pages/CategoryPage";
+import ServicePage from "./pages/ServicePage";
 import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
