@@ -90,6 +90,11 @@ export default function AdminDashboard() {
               <FolderOpen className="w-5 h-5 mr-2" /> Gerenciar Categorias
             </Button>
           </Link>
+          <Link to="/admin/servicos">
+            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-14 text-base">
+              <Layers className="w-5 h-5 mr-2" /> Páginas de Serviços
+            </Button>
+          </Link>
           <Link to="/admin/artigos/novo">
             <Button className="w-full bg-gold hover:bg-gold/90 text-primary h-14 text-base font-semibold">
               <Plus className="w-5 h-5 mr-2" /> Novo Artigo
