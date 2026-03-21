@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -9,7 +9,91 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { slugify } from "@/lib/slugify";
-import { ArrowLeft, Save, Eye, Trash2, Image } from "lucide-react";
+import { ArrowLeft, Save, Eye, Trash2, Image, Upload, X } from "lucide-react";
+
+function ImageUpload({
+  label,
+  value,
+  onChange,
+  hint,
+}: {
+  label: string;
+  value: string;
+  onChange: (url: string) => void;
+  hint: string;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const { toast } = useToast();
+
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast({ title: "Erro", description: "Selecione um arquivo de imagem.", variant: "destructive" });
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "Erro", description: "A imagem deve ter no máximo 5MB.", variant: "destructive" });
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const ext = file.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${ext}`;
+      const filePath = `images/${fileName}`;
+
+      const { error } = await supabase.storage.from("articles").upload(filePath, file);
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage.from("articles").getPublicUrl(filePath);
+      onChange(urlData.publicUrl);
+      toast({ title: "Imagem enviada com sucesso!" });
+    } catch (err: any) {
+      toast({ title: "Erro ao enviar imagem", description: err.message, variant: "destructive" });
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  };
+
+  return (
+    <div>
+      <Label className="text-foreground flex items-center gap-1">
+        <Image className="w-4 h-4" /> {label}
+      </Label>
+      <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleUpload} />
+
+      {value ? (
+        <div className="mt-2 relative inline-block">
+          <img src={value} alt="Preview" className="rounded-lg max-h-48 object-cover" />
+          <button
+            type="button"
+            onClick={() => onChange("")}
+            className="absolute -top-2 -right-2 bg-destructive text-white rounded-full p-1 hover:bg-destructive/80"
+          >
+            <X className="w-3 h-3" />
+          </button>
+        </div>
+      ) : (
+        <Button
+          type="button"
+          variant="outline"
+          className="mt-1 w-full border-dashed h-24 flex flex-col gap-1"
+          disabled={uploading}
+          onClick={() => inputRef.current?.click()}
+        >
+          <Upload className="w-5 h-5" />
+          <span className="text-xs">{uploading ? "Enviando..." : "Clique para enviar imagem"}</span>
+        </Button>
+      )}
+      <p className="text-xs text-muted-foreground mt-1">{hint}</p>
+    </div>
+  );
+}
 
 export default function AdminArticleEditor() {
   const { id } = useParams();
@@ -186,14 +270,12 @@ export default function AdminArticleEditor() {
               <p className="text-xs text-muted-foreground mt-1">Aparece como H2 — reforça palavras-chave secundárias.</p>
             </div>
 
-            <div>
-              <Label className="text-foreground flex items-center gap-1"><Image className="w-4 h-4" /> Imagem Destacada (URL)</Label>
-              <Input value={featuredImageUrl} onChange={(e) => setFeaturedImageUrl(e.target.value)} className="text-black" placeholder="https://exemplo.com/imagem.jpg" />
-              <p className="text-xs text-muted-foreground mt-1">Imagem principal do artigo — usada como destaque e og:image.</p>
-              {featuredImageUrl && (
-                <img src={featuredImageUrl} alt="Preview" className="mt-2 rounded-lg max-h-48 object-cover" />
-              )}
-            </div>
+            <ImageUpload
+              label="Imagem Destacada"
+              value={featuredImageUrl}
+              onChange={setFeaturedImageUrl}
+              hint="Imagem principal do artigo — usada como destaque e og:image. Máx 5MB."
+            />
 
             <div>
               <Label className="text-foreground">Conteúdo do Artigo *</Label>
@@ -238,11 +320,12 @@ export default function AdminArticleEditor() {
               <p className="text-xs text-muted-foreground mt-1">Ajudam robôs a entender o tema. Separe com vírgulas.</p>
             </div>
 
-            <div>
-              <Label className="text-foreground">Imagem OG (Open Graph)</Label>
-              <Input value={ogImageUrl} onChange={(e) => setOgImageUrl(e.target.value)} className="text-black" placeholder="URL da imagem para compartilhamento em redes sociais" />
-              <p className="text-xs text-muted-foreground mt-1">Se vazio, será usada a imagem destacada.</p>
-            </div>
+            <ImageUpload
+              label="Imagem OG (Open Graph)"
+              value={ogImageUrl}
+              onChange={setOgImageUrl}
+              hint="Imagem para compartilhamento em redes sociais. Se vazio, será usada a imagem destacada."
+            />
 
             {/* URL Preview */}
             <div className="bg-muted rounded-lg p-4">
