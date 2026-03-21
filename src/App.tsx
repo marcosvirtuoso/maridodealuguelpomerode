@@ -11,8 +11,11 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminCategories from "./pages/AdminCategories";
 import AdminArticles from "./pages/AdminArticles";
 import AdminArticleEditor from "./pages/AdminArticleEditor";
+import AdminServicePages from "./pages/AdminServicePages";
+import AdminServicePageEditor from "./pages/AdminServicePageEditor";
 import ArticlePage from "./pages/ArticlePage";
 import CategoryPage from "./pages/CategoryPage";
+import ServicePage from "./pages/ServicePage";
 import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,9 @@ const App = () => (
             <Route path="/admin/categorias" element={<AdminCategories />} />
             <Route path="/admin/artigos" element={<AdminArticles />} />
             <Route path="/admin/artigos/:id" element={<AdminArticleEditor />} />
+            <Route path="/admin/servicos" element={<AdminServicePages />} />
+            <Route path="/admin/servicos/:id" element={<AdminServicePageEditor />} />
+            <Route path="/servicos/:slug" element={<ServicePage />} />
             <Route path="/:categorySlug" element={<CategoryPage />} />
             <Route path="/:categorySlug/:articleSlug" element={<ArticlePage />} />
             <Route path="*" element={<NotFound />} />

@@ -1,4 +1,7 @@
 import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench, WashingMachine } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 
 interface ServiceItem {
   name: string;
@@ -117,6 +120,17 @@ const categories: ServiceCategory[] = [
 ];
 
 export default function Servicos() {
+  const { data: publishedSlugs = [] } = useQuery({
+    queryKey: ["published-service-slugs"],
+    queryFn: async () => {
+      const { data } = await supabase.from("service_pages").select("service_name, slug").eq("status", "published");
+      return data || [];
+    },
+    staleTime: 60000,
+  });
+
+  const slugMap = new Map(publishedSlugs.map((p) => [p.service_name, p.slug]));
+
   return (
     <section
       id="servicos"
@@ -193,7 +207,13 @@ export default function Servicos() {
                       />
                     </span>
                     <div>
-                      <span className="text-sm font-semibold text-foreground">{service.name}</span>
+                      {slugMap.has(service.name) ? (
+                        <Link to={`/servicos/${slugMap.get(service.name)}`} className="text-sm font-semibold text-foreground hover:text-gold transition-colors underline-offset-2 hover:underline">
+                          {service.name}
+                        </Link>
+                      ) : (
+                        <span className="text-sm font-semibold text-foreground">{service.name}</span>
+                      )}
                       <p className="text-xs text-muted-foreground mt-0.5">{service.description}</p>
                     </div>
                   </li>
