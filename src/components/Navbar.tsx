@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Wrench } from "lucide-react";
 
 const navLinks = [
@@ -11,6 +12,8 @@ const navLinks = [
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -24,8 +27,21 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/" + href);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== "/") {
+      navigate("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -41,11 +57,8 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a
-          href="#inicio"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#inicio");
-          }}
+          href="/"
+          onClick={handleLogoClick}
           className="flex items-center gap-2 text-primary-foreground group"
           aria-label="Marido de Aluguel Pomerode - Início"
         >
