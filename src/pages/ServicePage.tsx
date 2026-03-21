@@ -3,6 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Diferenciais from "@/components/Diferenciais";
+import Sobre from "@/components/Sobre";
+import Mapa from "@/components/Mapa";
+import Contato from "@/components/Contato";
 import { Helmet } from "react-helmet-async";
 
 export default function ServicePage() {
@@ -93,52 +97,81 @@ export default function ServicePage() {
       </Helmet>
 
       <Navbar />
-      <main className="bg-background min-h-screen">
-        <article className="max-w-3xl mx-auto px-4 py-16 sm:py-20">
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground mb-6">
-            <a href="/" className="hover:text-gold transition-colors">Início</a>
-            <span className="mx-2">›</span>
-            <a href="/#servicos" className="hover:text-gold transition-colors">Serviços</a>
-            <span className="mx-2">›</span>
-            <span className="text-foreground">{page.title}</span>
-          </nav>
+      <main className="bg-background">
+        {/* Hero Section — Image left, text right */}
+        <section className="bg-primary">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
+              {/* Image — left side */}
+              {page.featured_image_url && (
+                <div className="relative bg-primary flex items-center justify-center overflow-hidden lg:min-h-[600px]">
+                  <img
+                    src={page.featured_image_url}
+                    alt={page.title}
+                    className="w-full h-full object-contain object-center max-h-[70vh] lg:max-h-none"
+                    loading="eager"
+                  />
+                </div>
+              )}
 
-          {/* Featured Image */}
-          {page.featured_image_url && (
-            <img src={page.featured_image_url} alt={page.title} className="w-full rounded-xl mb-8 max-h-96 object-cover" loading="lazy" />
-          )}
+              {/* Text — right side */}
+              <div className={`flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20 ${!page.featured_image_url ? 'lg:col-span-2 items-center text-center' : ''}`}>
+                {/* Breadcrumb */}
+                <nav aria-label="Breadcrumb" className="text-sm text-primary-foreground/50 mb-6">
+                  <a href="/" className="hover:text-gold transition-colors">Início</a>
+                  <span className="mx-2">›</span>
+                  <a href="/#servicos" className="hover:text-gold transition-colors">Serviços</a>
+                  <span className="mx-2">›</span>
+                  <span className="text-primary-foreground/80">{page.title}</span>
+                </nav>
 
-          {/* H1 */}
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-            {page.title}
-          </h1>
+                {/* H1 */}
+                <h1
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-4"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {page.title}
+                </h1>
 
-          {/* H2 */}
-          {page.subtitle && (
-            <h2 className="text-xl text-muted-foreground mb-6 leading-relaxed">{page.subtitle}</h2>
-          )}
+                {/* H2 */}
+                {page.subtitle && (
+                  <h2 className="text-lg sm:text-xl text-primary-foreground/70 mb-8 leading-relaxed max-w-lg">
+                    {page.subtitle}
+                  </h2>
+                )}
 
-          {/* Content */}
-          <div className="prose prose-lg max-w-none text-foreground leading-relaxed whitespace-pre-wrap">
-            {page.content}
+                {/* CTA WhatsApp */}
+                <a
+                  href={`https://wa.me/5547988582480?text=Olá%20Marcos!%20Tenho%20interesse%20em%20${encodeURIComponent(page.service_name)}.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp inline-flex items-center gap-3 px-8 py-4 text-base font-bold text-white rounded-2xl w-fit"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.837L.057 23.882l6.221-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.016-1.38l-.36-.214-3.69.853.879-3.59-.235-.371A9.79 9.79 0 012.182 12C2.182 6.577 6.577 2.182 12 2.182c5.424 0 9.818 4.395 9.818 9.818 0 5.424-4.394 9.818-9.818 9.818z"/>
+                  </svg>
+                  Agendar pelo WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
+        </section>
 
-          {/* CTA */}
-          <div className="mt-12 p-6 bg-primary/5 rounded-xl border border-primary/20 text-center">
-            <h3 className="text-lg font-bold text-foreground mb-2">Precisa deste serviço?</h3>
-            <p className="text-muted-foreground mb-4 text-sm">Entre em contato pelo WhatsApp e agende agora mesmo.</p>
-            <a
-              href={`https://wa.me/5547988582480?text=Olá%20Marcos!%20Tenho%20interesse%20em%20${encodeURIComponent(page.service_name)}.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.837L.057 23.882l6.221-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.016-1.38l-.36-.214-3.69.853.879-3.59-.235-.371A9.79 9.79 0 012.182 12C2.182 6.577 6.577 2.182 12 2.182c5.424 0 9.818 4.395 9.818 9.818 0 5.424-4.394 9.818-9.818 9.818z"/></svg>
-              Agendar pelo WhatsApp
-            </a>
-          </div>
-        </article>
+        {/* Detailed Content */}
+        <section className="py-16 sm:py-20">
+          <article className="max-w-3xl mx-auto px-4 sm:px-6">
+            <div className="prose prose-lg max-w-none text-foreground leading-relaxed whitespace-pre-wrap">
+              {page.content}
+            </div>
+          </article>
+        </section>
+
+        {/* Sections from homepage */}
+        <Diferenciais />
+        <Sobre />
+        <Mapa />
+        <Contato />
       </main>
       <Footer />
     </>
