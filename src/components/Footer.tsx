@@ -112,9 +112,12 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} Marido de Aluguel Pomerode — Marcos. Todos os direitos reservados.
           </p>
-          <p>
-            Serviços residenciais em Pomerode, Blumenau, Jaraguá do Sul e região · SC
-          </p>
+          <div className="flex items-center gap-4">
+            <p>
+              Serviços residenciais em Pomerode, Blumenau, Jaraguá do Sul e região · SC
+            </p>
+            <a href="/admin/login" className="hover:text-gold transition-colors">Admin</a>
+          </div>
         </div>
       </div>
     </footer>
