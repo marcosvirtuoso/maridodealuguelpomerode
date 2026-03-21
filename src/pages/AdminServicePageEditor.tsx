@@ -93,6 +93,7 @@ export default function AdminServicePageEditor() {
   useEffect(() => {
     if (page) {
       setServiceName(page.service_name);
+      setSlug(page.slug);
       setTitle(page.title);
       setSubtitle(page.subtitle ?? "");
       setContent(page.content);
