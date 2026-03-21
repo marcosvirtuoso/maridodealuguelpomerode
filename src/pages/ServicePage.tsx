@@ -118,7 +118,7 @@ export default function ServicePage() {
               )}
 
               {/* Text — right side */}
-              <div className={`flex flex-col justify-center px-6 sm:px-10 lg:px-14 pt-[calc(72px+2rem)] pb-12 sm:pt-[calc(72px+2rem)] sm:pb-16 lg:pt-20 lg:pb-20 ${!page.featured_image_url ? 'lg:col-span-2 items-center text-center lg:pt-[calc(72px+3rem)]' : ''}`}>
+              <div className={`flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20 ${!page.featured_image_url ? 'lg:col-span-2 items-center text-center' : ''}`}>
                 {/* Breadcrumb */}
                 <nav aria-label="Breadcrumb" className="text-sm text-primary-foreground/50 mb-6">
                   <a href="/" className="hover:text-gold transition-colors">Início</a>
