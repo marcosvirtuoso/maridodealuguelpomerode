@@ -207,7 +207,13 @@ export default function Servicos() {
                       />
                     </span>
                     <div>
-                      <span className="text-sm font-semibold text-foreground">{service.name}</span>
+                      {slugMap.has(service.name) ? (
+                        <Link to={`/servicos/${slugMap.get(service.name)}`} className="text-sm font-semibold text-foreground hover:text-gold transition-colors underline-offset-2 hover:underline">
+                          {service.name}
+                        </Link>
+                      ) : (
+                        <span className="text-sm font-semibold text-foreground">{service.name}</span>
+                      )}
                       <p className="text-xs text-muted-foreground mt-0.5">{service.description}</p>
                     </div>
                   </li>
