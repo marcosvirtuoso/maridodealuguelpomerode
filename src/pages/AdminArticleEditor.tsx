@@ -177,10 +177,16 @@ export default function AdminArticleEditor() {
 
       if (isEditing) {
         const { error } = await supabase.from("articles").update(payload).eq("id", id!);
-        if (error) throw error;
+        if (error) {
+          console.error("Update error:", error);
+          throw new Error(error.message);
+        }
       } else {
         const { error } = await supabase.from("articles").insert(payload);
-        if (error) throw error;
+        if (error) {
+          console.error("Insert error:", error);
+          throw new Error(error.message);
+        }
       }
     },
     onSuccess: () => {
