@@ -170,6 +170,39 @@ export default function ServicePage() {
           </article>
         </section>
 
+        {/* CTA Destaque — decisão rápida */}
+        <section className="relative py-16 sm:py-20 overflow-hidden" style={{ backgroundColor: "hsl(var(--service-hero))" }}>
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold/30 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gold/20 rounded-full blur-3xl" />
+          </div>
+          <div className="relative max-w-3xl mx-auto px-6 text-center">
+            <h2
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-foreground mb-4"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Pronto para resolver isso hoje?
+            </h2>
+            <p className="text-primary-foreground/70 text-lg sm:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+              Fale agora com o Marcos e agende seu serviço de{" "}
+              <span className="text-gold font-semibold">{page.service_name}</span>{" "}
+              em Pomerode. Atendimento rápido e sem enrolação.
+            </p>
+            <a
+              href={`https://wa.me/5547988582480?text=Olá%20Marcos!%20Quero%20agendar%20o%20serviço%20de%20${encodeURIComponent(page.service_name)}%20o%20mais%20rápido%20possível!`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp inline-flex items-center gap-3 px-10 py-5 text-lg font-bold text-white rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-200"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.837L.057 23.882l6.221-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.016-1.38l-.36-.214-3.69.853.879-3.59-.235-.371A9.79 9.79 0 012.182 12C2.182 6.577 6.577 2.182 12 2.182c5.424 0 9.818 4.395 9.818 9.818 0 5.424-4.394 9.818-9.818 9.818z"/>
+              </svg>
+              Quero agendar agora!
+            </a>
+          </div>
+        </section>
+
         {/* Sections from homepage */}
         <Diferenciais />
         <Sobre />
