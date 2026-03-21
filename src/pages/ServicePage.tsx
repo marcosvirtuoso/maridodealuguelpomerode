@@ -104,7 +104,7 @@ export default function ServicePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
               {/* Image — left side */}
               {page.featured_image_url && (
-                <div className="relative flex items-center justify-center overflow-hidden pt-[72px] px-6 min-h-[50vh] lg:min-h-[60vh]">
+                <div className="relative flex items-center justify-center overflow-hidden py-[72px] px-6">
                   <img
                     src={page.featured_image_url}
                     alt={page.title}
