@@ -13,7 +13,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
-      navigate("/admin/login");
+      navigate("/admin/login", { replace: true });
     }
   }, [user, loading, isAdmin, navigate]);
 
@@ -35,7 +35,8 @@ export default function AdminDashboard() {
     enabled: isAdmin,
   });
 
-  if (loading || !isAdmin) return <div className="min-h-screen bg-background flex items-center justify-center">Carregando...</div>;
+  if (loading) return <div className="min-h-screen bg-background flex items-center justify-center">Carregando...</div>;
+  if (!user || !isAdmin) return null;
 
   return (
     <div className="min-h-screen bg-background">
