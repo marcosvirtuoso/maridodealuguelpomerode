@@ -99,7 +99,7 @@ export default function ServicePage() {
       <Navbar />
       <main className="bg-background">
         {/* Spacer for fixed navbar */}
-        <div className="h-[72px]" />
+        <div className="h-[72px]" style={{ backgroundColor: "hsl(var(--service-hero))" }} />
 
         {/* Hero Section — Image left, text right */}
         <section style={{ backgroundColor: "hsl(var(--service-hero))" }}>
