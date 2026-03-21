@@ -66,6 +66,7 @@ export default function AdminServicePageEditor() {
   const prefilledSlug = searchParams.get("slug") || "";
 
   const [serviceName, setServiceName] = useState(prefilledName);
+  const [slug, setSlug] = useState(prefilledSlug || slugify(prefilledName));
   const [title, setTitle] = useState(prefilledName);
   const [subtitle, setSubtitle] = useState("");
   const [content, setContent] = useState("");
