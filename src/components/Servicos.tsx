@@ -1,4 +1,7 @@
 import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench, WashingMachine } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 
 interface ServiceItem {
   name: string;
