@@ -1,4 +1,4 @@
-import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench } from "lucide-react";
+import { Zap, Droplets, Sofa, WrenchIcon, Waves, Toilet, Wrench, WashingMachine } from "lucide-react";
 
 interface ServiceItem {
   name: string;
