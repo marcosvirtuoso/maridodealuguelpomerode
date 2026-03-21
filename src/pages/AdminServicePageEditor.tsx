@@ -194,6 +194,7 @@ export default function AdminServicePageEditor() {
                 <Input value={slug} onChange={(e) => setSlug(slugify(e.target.value))} className="text-black" placeholder="slug-da-pagina" />
               </div>
               <p className="text-xs text-muted-foreground mt-1">Editável. Dica: adicione "-pomerode" no final para SEO local.</p>
+            </div>
 
             <div>
               <Label className="text-foreground">Título (H1) *</Label>
