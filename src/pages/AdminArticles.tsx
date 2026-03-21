@@ -12,7 +12,7 @@ export default function AdminArticles() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) navigate("/admin/login");
+    if (!loading && (!user || !isAdmin)) navigate("/admin/login", { replace: true });
   }, [user, loading, isAdmin, navigate]);
 
   const { data: articles = [] } = useQuery({
@@ -28,7 +28,8 @@ export default function AdminArticles() {
     enabled: isAdmin,
   });
 
-  if (loading || !isAdmin) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  if (!user || !isAdmin) return null;
 
   return (
     <div className="min-h-screen bg-background">
