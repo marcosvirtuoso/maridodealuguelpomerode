@@ -108,7 +108,7 @@ export default function ServicePage() {
                   <img
                     src={page.featured_image_url}
                     alt={page.title}
-                    className="max-h-[50vh] lg:max-h-[500px] w-auto object-contain"
+                    className="max-h-[50vh] lg:max-h-[500px] w-auto object-contain rounded-[30px]"
                     loading="eager"
                   />
                 </div>
