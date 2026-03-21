@@ -115,7 +115,7 @@ export default function AdminArticleEditor() {
   const [status, setStatus] = useState<"draft" | "published">("draft");
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) navigate("/admin/login");
+    if (!loading && (!user || !isAdmin)) navigate("/admin/login", { replace: true });
   }, [user, loading, isAdmin, navigate]);
 
   const { data: categories = [] } = useQuery({
@@ -209,7 +209,8 @@ export default function AdminArticleEditor() {
     },
   });
 
-  if (loading || !isAdmin) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  if (!user || !isAdmin) return null;
 
   const previewUrl = selectedCategory ? `/${selectedCategory.slug}/${slug}` : "";
 
