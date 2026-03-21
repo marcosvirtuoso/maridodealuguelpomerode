@@ -24,6 +24,9 @@
     --accent-gold: 38 92% 50%;
     --accent-gold-light: 38 100% 95%;
 
+    /* Service hero background — muted navy */
+    --service-hero: 220 30% 30%;
+
     --secondary: 220 25% 92%;
     --secondary-foreground: 220 50% 18%;
 
