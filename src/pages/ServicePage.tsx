@@ -97,14 +97,14 @@ export default function ServicePage() {
       </Helmet>
 
       <Navbar />
-      <main className="bg-background pt-[72px]">
+      <main className="bg-background">
         {/* Hero Section — Image left, text right */}
         <section style={{ backgroundColor: "hsl(var(--service-hero))" }}>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
               {/* Image — left side */}
               {page.featured_image_url && (
-                <div className="relative flex items-center justify-center overflow-hidden py-8 lg:py-12 px-6">
+                <div className="relative flex items-center justify-center overflow-hidden pt-[calc(72px+2rem)] pb-8 lg:pt-[calc(72px+3rem)] lg:pb-12 px-6">
                   <img
                     src={page.featured_image_url}
                     alt={page.title}
@@ -115,7 +115,7 @@ export default function ServicePage() {
               )}
 
               {/* Text — right side */}
-              <div className={`flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20 ${!page.featured_image_url ? 'lg:col-span-2 items-center text-center' : ''}`}>
+              <div className={`flex flex-col justify-center px-6 sm:px-10 lg:px-14 pt-[calc(72px+2rem)] pb-12 sm:pt-[calc(72px+2rem)] sm:pb-16 lg:pt-20 lg:pb-20 ${!page.featured_image_url ? 'lg:col-span-2 items-center text-center lg:pt-[calc(72px+3rem)]' : ''}`}>
                 {/* Breadcrumb */}
                 <nav aria-label="Breadcrumb" className="text-sm text-primary-foreground/50 mb-6">
                   <a href="/" className="hover:text-gold transition-colors">Início</a>
