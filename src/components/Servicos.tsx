@@ -120,6 +120,17 @@ const categories: ServiceCategory[] = [
 ];
 
 export default function Servicos() {
+  const { data: publishedSlugs = [] } = useQuery({
+    queryKey: ["published-service-slugs"],
+    queryFn: async () => {
+      const { data } = await supabase.from("service_pages").select("service_name, slug").eq("status", "published");
+      return data || [];
+    },
+    staleTime: 60000,
+  });
+
+  const slugMap = new Map(publishedSlugs.map((p) => [p.service_name, p.slug]));
+
   return (
     <section
       id="servicos"
