@@ -20,7 +20,7 @@ export default function AdminCategories() {
   const [description, setDescription] = useState("");
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) navigate("/admin/login");
+    if (!loading && (!user || !isAdmin)) navigate("/admin/login", { replace: true });
   }, [user, loading, isAdmin, navigate]);
 
   const { data: categories = [] } = useQuery({
@@ -60,7 +60,8 @@ export default function AdminCategories() {
     onError: (e: Error) => toast({ title: "Erro", description: e.message, variant: "destructive" }),
   });
 
-  if (loading || !isAdmin) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  if (!user || !isAdmin) return null;
 
   return (
     <div className="min-h-screen bg-background">
