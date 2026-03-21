@@ -98,13 +98,16 @@ export default function ServicePage() {
 
       <Navbar />
       <main className="bg-background">
+        {/* Spacer for fixed navbar */}
+        <div className="h-[72px]" />
+
         {/* Hero Section — Image left, text right */}
         <section style={{ backgroundColor: "hsl(var(--service-hero))" }}>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
               {/* Image — left side */}
               {page.featured_image_url && (
-                <div className="relative flex items-center justify-center overflow-hidden py-[72px] px-6">
+                <div className="relative flex items-center justify-center overflow-hidden py-8 lg:py-12 px-6">
                   <img
                     src={page.featured_image_url}
                     alt={page.title}
