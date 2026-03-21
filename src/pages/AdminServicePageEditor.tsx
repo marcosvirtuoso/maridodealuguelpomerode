@@ -66,6 +66,7 @@ export default function AdminServicePageEditor() {
   const prefilledSlug = searchParams.get("slug") || "";
 
   const [serviceName, setServiceName] = useState(prefilledName);
+  const [slug, setSlug] = useState(prefilledSlug || slugify(prefilledName));
   const [title, setTitle] = useState(prefilledName);
   const [subtitle, setSubtitle] = useState("");
   const [content, setContent] = useState("");
@@ -92,6 +93,7 @@ export default function AdminServicePageEditor() {
   useEffect(() => {
     if (page) {
       setServiceName(page.service_name);
+      setSlug(page.slug);
       setTitle(page.title);
       setSubtitle(page.subtitle ?? "");
       setContent(page.content);
@@ -103,7 +105,7 @@ export default function AdminServicePageEditor() {
     }
   }, [page]);
 
-  const slug = isEditing && page ? page.slug : (prefilledSlug || slugify(serviceName));
+  // slug is now editable state
 
   const saveMutation = useMutation({
     mutationFn: async (publishNow: boolean) => {
@@ -183,6 +185,15 @@ export default function AdminServicePageEditor() {
               <Label className="text-foreground">Tópico do Serviço</Label>
               <Input value={serviceName} readOnly className="text-black bg-muted" />
               <p className="text-xs text-muted-foreground mt-1">Nome exato do tópico no card de serviços (não editável).</p>
+            </div>
+
+            <div>
+              <Label className="text-foreground">Slug (URL)</Label>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">/servicos/</span>
+                <Input value={slug} onChange={(e) => setSlug(slugify(e.target.value))} className="text-black" placeholder="slug-da-pagina" />
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">Editável. Dica: adicione "-pomerode" no final para SEO local.</p>
             </div>
 
             <div>
