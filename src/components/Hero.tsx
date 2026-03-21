@@ -102,30 +102,24 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Mobile: Video after text ── */}
+        {/* ── Mobile: Image after text ── */}
         <div className="flex lg:hidden justify-center mt-8 pb-16">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full max-w-sm rounded-2xl"
-            src="/videos/hero-video.mp4"
+          <img
+            src={logoImage}
+            alt="Novolar Instalações - Serviços Residenciais em Pomerode"
+            className="w-full max-w-sm rounded-2xl object-contain"
           />
         </div>
 
-        {/* ── Right: Video — absolute, vertically centered ── */}
+        {/* ── Right: Image — absolute, vertically centered ── */}
         <div
           className="hidden lg:flex absolute right-0 top-0 bottom-0 z-0 items-center justify-center"
           style={{ width: "42%" }}>
 
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
+          <img
+            src={logoImage}
+            alt="Novolar Instalações - Serviços Residenciais em Pomerode"
             className="max-h-[85vh] w-auto object-contain rounded-2xl"
-            src="/videos/hero-video.mp4"
           />
 
         </div>
