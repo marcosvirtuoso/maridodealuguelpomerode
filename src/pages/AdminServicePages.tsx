@@ -12,7 +12,7 @@ const ALL_TOPICS = [
     "Instalação de luminárias e lustres",
     "Instalação de ventiladores de teto",
     "Troca de disjuntores e chaves",
-    "Instalação de suportes elétricos",
+    "Automação residencial",
   ]},
   { category: "Hidráulica Residencial", services: [
     "Instalação de torneiras",
