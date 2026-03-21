@@ -57,11 +57,8 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a
-          href="#inicio"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#inicio");
-          }}
+          href="/"
+          onClick={handleLogoClick}
           className="flex items-center gap-2 text-primary-foreground group"
           aria-label="Marido de Aluguel Pomerode - Início"
         >
