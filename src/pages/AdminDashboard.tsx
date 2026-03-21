@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench, LogOut, FileText, FolderOpen, Plus } from "lucide-react";
+import { Wrench, LogOut, FileText, FolderOpen, Plus, Layers } from "lucide-react";
 
 export default function AdminDashboard() {
   const { user, loading, isAdmin, signOut } = useAuth();
