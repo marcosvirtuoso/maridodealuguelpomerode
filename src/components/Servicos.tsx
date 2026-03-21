@@ -34,7 +34,7 @@ const categories: ServiceCategory[] = [
       { name: "Instalação de luminárias e lustres", description: "Fixação segura de qualquer tipo de iluminação", seoKeywords: "instalação luminária lustres Pomerode" },
       { name: "Instalação de ventiladores de teto", description: "Fixação e fiação elétrica com segurança", seoKeywords: "instalação ventilador teto Pomerode" },
       { name: "Troca de disjuntores e chaves", description: "Substituição e revisão do quadro elétrico", seoKeywords: "troca disjuntor quadro elétrico Pomerode" },
-      { name: "Instalação de suportes elétricos", description: "Tomadas USB, externas e embutidas", seoKeywords: "instalação tomada USB Pomerode" },
+      { name: "Automação residencial", description: "Controle tudo na palma da sua mão", seoKeywords: "automação residencial Pomerode" },
     ],
   },
   {
