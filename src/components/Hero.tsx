@@ -48,21 +48,21 @@ export default function Hero() {
       {/* Carousel background — desktop: strip of all slides side by side */}
       <div className="hidden lg:block w-full overflow-hidden relative">
         <div
-          className="flex transition-transform duration-800 ease-in-out"
+          className="flex ease-in-out"
           style={{
-            width: `${slides.length * 100}%`,
-            transform: `translateX(-${current * (100 / slides.length)}%)`,
-            transitionDuration: "800ms",
+            width: `${totalSlides * 100}%`,
+            transform: `translateX(-${current * (100 / totalSlides)}%)`,
+            transition: hasTransition ? "transform 800ms ease-in-out" : "none",
           }}
         >
-          {slides.map((src, idx) => (
+          {loopSlides.map((src, idx) => (
             <img
               key={idx}
               src={src}
               alt=""
               aria-hidden="true"
               className="w-full h-auto flex-shrink-0"
-              style={{ width: `${100 / slides.length}%` }}
+              style={{ width: `${100 / totalSlides}%` }}
             />
           ))}
         </div>
