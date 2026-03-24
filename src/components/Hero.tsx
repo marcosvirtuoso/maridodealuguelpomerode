@@ -69,27 +69,14 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile: same strip approach with cover */}
-      <div className="lg:hidden absolute inset-0 overflow-hidden">
-        <div
-          className="flex h-full ease-in-out"
-          style={{
-            width: `${totalSlides * 100}%`,
-            transform: `translateX(-${current * (100 / totalSlides)}%)`,
-            transition: hasTransition ? "transform 800ms ease-in-out" : "none",
-          }}
-        >
-          {loopSlides.map((src, idx) => (
-            <img
-              key={idx}
-              src={src}
-              alt=""
-              aria-hidden="true"
-              className="h-full object-cover flex-shrink-0"
-              style={{ width: `${100 / totalSlides}%` }}
-            />
-          ))}
-        </div>
+      {/* Mobile: use dedicated mobile banner */}
+      <div className="lg:hidden absolute inset-0">
+        <img
+          src={bannerMobile}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover"
+        />
       </div>
       {/* Mobile spacer */}
       <div className="lg:hidden w-full" style={{ minHeight: "100svh" }} />
