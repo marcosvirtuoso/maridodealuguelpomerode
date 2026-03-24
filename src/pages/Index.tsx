@@ -12,7 +12,7 @@ const Index = () => {
     <>
       {/* SEO meta is set via index.html */}
       <Navbar />
-      <main className="pt-[72px]">
+      <main className="pt-16 sm:pt-[72px]">
         <Hero />
         <Servicos />
         <Diferenciais />
