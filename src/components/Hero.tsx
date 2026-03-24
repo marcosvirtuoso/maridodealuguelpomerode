@@ -63,7 +63,7 @@ export default function Hero() {
             e Região.
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-primary-foreground/80 max-w-lg mb-4 leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-base text-primary-foreground/80 max-w-lg mb-4 leading-relaxed">
             Serviços elétricos, hidráulicos, montagem de móveis e instalações residenciais com{" "}
             <strong className="text-primary-foreground">qualidade, segurança e eficiência</strong>.
             A solução certa para o seu lar.
