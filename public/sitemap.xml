@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página principal -->
+  <url>
+    <loc>https://novolarinstalacoes.com.br/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Páginas de serviço -->
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/instalacao-de-luminarias-e-lustres-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/instalacao-de-ventiladores-de-teto-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/troca-de-disjuntores-e-chaves-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/instalacao-de-chuveiros-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/instalacao-de-tomadas-e-interruptores-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/instalacao-de-torneiras-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/automacao-residencial-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/reparo-de-vazamentos-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/instalacao-de-pias-e-lavatorios-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/reparos-em-caixa-acoplada-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/servicos/reparos-em-caixa-dagua-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Categorias -->
+  <url>
+    <loc>https://novolarinstalacoes.com.br/eletrica</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/hidraulica</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/instalacoes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Artigos -->
+  <url>
+    <loc>https://novolarinstalacoes.com.br/eletrica/servicos-de-eletrica-em-pomerode</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://novolarinstalacoes.com.br/eletrica/disjuntor-desarmando-sozinho-em-pomerode-o-que-pode-ser</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
