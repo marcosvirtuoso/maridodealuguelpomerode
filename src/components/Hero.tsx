@@ -15,7 +15,8 @@ export default function Hero() {
         src={bannerBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-contain object-center"
+        style={{ backgroundColor: "hsl(220 50% 12%)" }}
       />
 
       {/* Gradient overlay 20% → 40% */}
@@ -54,7 +55,7 @@ export default function Hero() {
 
           {/* Heading — SEO H1 */}
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground max-w-2xl mb-6"
+            className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-primary-foreground max-w-2xl mb-6"
             style={{ fontFamily: "'Playfair Display', serif" }}>
 
             Instalações e Reparos Residenciais em{" "}
@@ -62,13 +63,13 @@ export default function Hero() {
             e Região.
           </h1>
 
-          <p className="text-base sm:text-lg lg:text-xl text-primary-foreground/80 max-w-lg mb-4 leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-primary-foreground/80 max-w-lg mb-4 leading-relaxed">
             Serviços elétricos, hidráulicos, montagem de móveis e instalações residenciais com{" "}
             <strong className="text-primary-foreground">qualidade, segurança e eficiência</strong>.
             A solução certa para o seu lar.
           </p>
 
-          <p className="text-sm text-gold/90 font-medium mb-10 max-w-md">
+          <p className="text-xs text-gold/90 font-medium mb-10 max-w-md">
             Solução mais eficiente e segura que você procura para o seu lar. ✓
           </p>
 
