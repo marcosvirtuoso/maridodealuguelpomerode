@@ -15,7 +15,7 @@ export default function Hero() {
         src={bannerBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-contain object-center"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         style={{ backgroundColor: "hsl(220 50% 12%)" }}
       />
 
