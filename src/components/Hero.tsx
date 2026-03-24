@@ -5,24 +5,35 @@ import bannerBg2 from "@/assets/banner_Novolar_2.jpg";
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
 const slides = [bannerBg1, bannerBg2];
+// Add clone of first slide at the end for seamless looping
+const loopSlides = [...slides, slides[0]];
+const totalSlides = loopSlides.length;
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [hasTransition, setHasTransition] = useState(true);
   const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
-  const goToSlide = (idx: number) => {
-    if (isAnimating || idx === current) return;
-    setIsAnimating(true);
-    setCurrent(idx);
-    setTimeout(() => setIsAnimating(false), 800);
-  };
+  // When we land on the clone (last), instantly jump to real first
+  useEffect(() => {
+    if (current === slides.length) {
+      const timeout = setTimeout(() => {
+        setHasTransition(false);
+        setCurrent(0);
+        // Re-enable transition after the instant jump
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setHasTransition(true);
+          });
+        });
+      }, 800);
+      return () => clearTimeout(timeout);
+    }
+  }, [current]);
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setIsAnimating(true);
-      setCurrent((prev) => (prev + 1) % slides.length);
-      setTimeout(() => setIsAnimating(false), 800);
+      setCurrent((prev) => prev + 1);
     }, 5000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
