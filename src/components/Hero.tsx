@@ -101,10 +101,17 @@ export default function Hero() {
       </div>
 
       {/* Overlay + content */}
-      <div className="absolute inset-0 z-[1] flex items-center justify-center"
-        style={{
-          background: "linear-gradient(to right, hsl(220 60% 20% / 0.75) 0%, hsl(220 60% 20% / 0) 100%)"
-        }}>
+      <div className="absolute inset-0 z-[1] flex items-center justify-center hero-overlay">
+        <style>{`
+          .hero-overlay {
+            background: linear-gradient(to right, hsl(220 60% 20% / 0.75) 0%, hsl(220 60% 20% / 0.75) 50%, hsl(220 60% 20% / 0.2) 100%);
+          }
+          @media (min-width: 1024px) {
+            .hero-overlay {
+              background: linear-gradient(to right, hsl(220 60% 20% / 0.75) 0%, hsl(220 60% 20% / 0) 100%);
+            }
+          }
+        `}</style>
 
       {/* Decorative gradient orbs */}
       <div
