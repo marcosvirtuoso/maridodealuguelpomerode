@@ -15,7 +15,8 @@ export default function Hero() {
         src={bannerBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-contain object-center"
+        style={{ backgroundColor: "hsl(220 50% 12%)" }}
       />
 
       {/* Gradient overlay 20% → 40% */}
