@@ -1,4 +1,4 @@
-import logoImage from "@/assets/Logo_novolarinstalacoes.png";
+
 
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
@@ -102,27 +102,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Mobile: Image after text ── */}
-        <div className="flex lg:hidden justify-center mt-8 pb-16">
-          <img
-            src={logoImage}
-            alt="Novolar Instalações - Serviços Residenciais em Pomerode"
-            className="w-full max-w-sm rounded-2xl object-contain"
-          />
-        </div>
-
-        {/* ── Right: Image — absolute, vertically centered ── */}
-        <div
-          className="hidden lg:flex absolute right-0 top-0 bottom-0 z-0 items-center justify-center"
-          style={{ width: "42%" }}>
-
-          <img
-            src={logoImage}
-            alt="Novolar Instalações - Serviços Residenciais em Pomerode"
-            className="max-h-[85vh] w-auto object-contain rounded-2xl"
-          />
-
-        </div>
 
       </div>
 
