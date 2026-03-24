@@ -1,32 +1,85 @@
-import bannerBg from "@/assets/banner_Novolar.jpg";
+import { useState, useEffect, useCallback } from "react";
+import bannerBg1 from "@/assets/banner_Novolar.jpg";
+import bannerBg2 from "@/assets/banner_Novolar_2.jpg";
 
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
+const slides = [bannerBg1, bannerBg2];
+
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const goToNext = useCallback(() => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+      setIsTransitioning(false);
+    }, 700);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(goToNext, 5000);
+    return () => clearInterval(timer);
+  }, [goToNext]);
+
   return (
     <section
       id="inicio"
       className="relative flex items-center justify-center overflow-hidden"
       aria-label="Apresentação - Marido de Aluguel Pomerode">
 
-      {/* Background image — natural size on desktop, cover on mobile */}
+      {/* Carousel background — desktop */}
+      <div className="hidden lg:block w-full relative">
+        <img
+          src={slides[current]}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-auto transition-transform duration-700 ease-in-out"
+          style={{
+            transform: isTransitioning ? "translateX(-100%)" : "translateX(0)",
+          }}
+        />
+        {/* Next slide coming in */}
+        {isTransitioning && (
+          <img
+            src={slides[(current + 1) % slides.length]}
+            alt=""
+            aria-hidden="true"
+            className="absolute top-0 left-0 w-full h-auto transition-transform duration-700 ease-in-out"
+            style={{
+              transform: "translateX(0)",
+              animation: "slideInFromRight 700ms ease-in-out forwards",
+            }}
+          />
+        )}
+      </div>
+
+      {/* Mobile: absolute cover image */}
       <img
-        src={bannerBg}
+        src={slides[current]}
         alt=""
         aria-hidden="true"
-        className="hidden lg:block w-full h-auto"
+        className="lg:hidden absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
       />
-      {/* Mobile: absolute cover image so section can grow with content */}
-      <img
-        src={bannerBg}
-        alt=""
-        aria-hidden="true"
-        className="lg:hidden absolute inset-0 w-full h-full object-cover"
-      />
-      {/* Mobile spacer to give min height */}
+      {/* Mobile spacer */}
       <div className="lg:hidden w-full" style={{ minHeight: "100svh" }} />
 
-      {/* Overlay + content on top of image */}
+      {/* Slide indicators */}
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              idx === current ? "bg-gold scale-110" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
+            }`}
+            aria-label={`Slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Overlay + content */}
       <div className="absolute inset-0 z-[1] flex items-center justify-center"
         style={{
           background: "linear-gradient(to right, hsl(220 60% 20% / 0.75) 0%, hsl(220 60% 20% / 0.5) 40%, hsl(220 60% 20% / 0.2) 100%)"
@@ -55,6 +108,10 @@ export default function Hero() {
                 padding: 80px 0 !important;
                 margin-left: clamp(50px, 5vw, 100px) !important;
               }
+            }
+            @keyframes slideInFromRight {
+              from { transform: translateX(100%); }
+              to { transform: translateX(0); }
             }
           `}</style>
 
@@ -135,7 +192,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-primary-foreground/40 animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-primary-foreground/40 animate-bounce z-20"
         aria-hidden="true">
 
         <span className="text-xs tracking-widest uppercase">Role</span>
