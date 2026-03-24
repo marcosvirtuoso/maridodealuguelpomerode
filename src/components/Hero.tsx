@@ -71,21 +71,21 @@ export default function Hero() {
       {/* Mobile: same strip approach with cover */}
       <div className="lg:hidden absolute inset-0 overflow-hidden">
         <div
-          className="flex h-full transition-transform ease-in-out"
+          className="flex h-full ease-in-out"
           style={{
-            width: `${slides.length * 100}%`,
-            transform: `translateX(-${current * (100 / slides.length)}%)`,
-            transitionDuration: "800ms",
+            width: `${totalSlides * 100}%`,
+            transform: `translateX(-${current * (100 / totalSlides)}%)`,
+            transition: hasTransition ? "transform 800ms ease-in-out" : "none",
           }}
         >
-          {slides.map((src, idx) => (
+          {loopSlides.map((src, idx) => (
             <img
               key={idx}
               src={src}
               alt=""
               aria-hidden="true"
               className="h-full object-cover flex-shrink-0"
-              style={{ width: `${100 / slides.length}%` }}
+              style={{ width: `${100 / totalSlides}%` }}
             />
           ))}
         </div>
@@ -98,9 +98,14 @@ export default function Hero() {
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => goToSlide(idx)}
+            onClick={() => {
+              if (idx !== current % slides.length) {
+                setHasTransition(true);
+                setCurrent(idx);
+              }
+            }}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              idx === current ? "bg-gold scale-110" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
+              idx === current % slides.length ? "bg-gold scale-110" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
             }`}
             aria-label={`Slide ${idx + 1}`}
           />
