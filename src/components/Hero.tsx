@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import bannerBg3 from "@/assets/banner_Novolar_3.jpg";
+import bannerMain from "@/assets/banner_Novolar_main.jpg";
 
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
-const slides = [bannerBg3];
+const slides = [bannerMain];
 // Add clone of first slide at the end for seamless looping
 const loopSlides = [...slides, slides[0]];
 const totalSlides = loopSlides.length;
