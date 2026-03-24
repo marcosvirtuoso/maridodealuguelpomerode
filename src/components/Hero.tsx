@@ -31,6 +31,7 @@ export default function Hero() {
   }, [current]);
 
   useEffect(() => {
+    if (slides.length <= 1) return;
     timerRef.current = setInterval(() => {
       setCurrent((prev) => prev + 1);
     }, 5000);
