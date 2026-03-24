@@ -35,7 +35,7 @@ export default function Hero() {
         aria-hidden="true" />
 
       {/* ── Main content ── */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 flex flex-col lg:flex-row items-stretch justify-between gap-8">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 flex flex-col lg:flex-row items-stretch justify-between gap-8">
 
         {/* ── Left: Text content ── */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:max-w-[55%]" style={{ padding: "80px 0", marginLeft: "clamp(50px, 5vw, 100px)" }}>
