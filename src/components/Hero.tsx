@@ -17,13 +17,11 @@ export default function Hero() {
         className="w-full h-auto block"
       />
 
-      {/* Gradient overlay 20% → 40% */}
-      <div
-        className="absolute inset-0"
+      {/* Overlay + content on top of image */}
+      <div className="absolute inset-0 flex items-center justify-center"
         style={{
           background: "linear-gradient(to bottom, hsl(220 50% 15% / 0.2), hsl(220 50% 15% / 0.4))"
-        }}
-      />
+        }}>
 
       {/* Decorative gradient orbs */}
       <div
@@ -36,9 +34,8 @@ export default function Hero() {
         style={{ background: "hsl(var(--accent-gold))" }}
         aria-hidden="true" />
 
-
       {/* ── Main content ── */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 flex flex-col lg:flex-row items-stretch justify-between gap-8 min-h-screen">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 flex flex-col lg:flex-row items-stretch justify-between gap-8">
 
         {/* ── Left: Text content ── */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left py-24 lg:max-w-[55%]">
