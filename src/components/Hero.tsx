@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import bannerBg1 from "@/assets/banner_Novolar.jpg";
 import bannerBg2 from "@/assets/banner_Novolar_2.jpg";
 
@@ -8,20 +8,25 @@ const slides = [bannerBg1, bannerBg2];
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
-  const goToNext = useCallback(() => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-      setIsTransitioning(false);
-    }, 700);
-  }, []);
+  const goToSlide = (idx: number) => {
+    if (isAnimating || idx === current) return;
+    setIsAnimating(true);
+    setCurrent(idx);
+    setTimeout(() => setIsAnimating(false), 800);
+  };
 
   useEffect(() => {
-    const timer = setInterval(goToNext, 5000);
-    return () => clearInterval(timer);
-  }, [goToNext]);
+    timerRef.current = setInterval(() => {
+      setIsAnimating(true);
+      setCurrent((prev) => (prev + 1) % slides.length);
+      setTimeout(() => setIsAnimating(false), 800);
+    }, 5000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, []);
+
 
   return (
     <section
@@ -29,39 +34,51 @@ export default function Hero() {
       className="relative flex items-center justify-center overflow-hidden"
       aria-label="Apresentação - Marido de Aluguel Pomerode">
 
-      {/* Carousel background — desktop */}
-      <div className="hidden lg:block w-full relative">
-        <img
-          src={slides[current]}
-          alt=""
-          aria-hidden="true"
-          className="w-full h-auto transition-transform duration-700 ease-in-out"
+      {/* Carousel background — desktop: strip of all slides side by side */}
+      <div className="hidden lg:block w-full overflow-hidden relative">
+        <div
+          className="flex transition-transform duration-800 ease-in-out"
           style={{
-            transform: isTransitioning ? "translateX(-100%)" : "translateX(0)",
+            width: `${slides.length * 100}%`,
+            transform: `translateX(-${current * (100 / slides.length)}%)`,
+            transitionDuration: "800ms",
           }}
-        />
-        {/* Next slide coming in */}
-        {isTransitioning && (
-          <img
-            src={slides[(current + 1) % slides.length]}
-            alt=""
-            aria-hidden="true"
-            className="absolute top-0 left-0 w-full h-auto transition-transform duration-700 ease-in-out"
-            style={{
-              transform: "translateX(0)",
-              animation: "slideInFromRight 700ms ease-in-out forwards",
-            }}
-          />
-        )}
+        >
+          {slides.map((src, idx) => (
+            <img
+              key={idx}
+              src={src}
+              alt=""
+              aria-hidden="true"
+              className="w-full h-auto flex-shrink-0"
+              style={{ width: `${100 / slides.length}%` }}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Mobile: absolute cover image */}
-      <img
-        src={slides[current]}
-        alt=""
-        aria-hidden="true"
-        className="lg:hidden absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-      />
+      {/* Mobile: same strip approach with cover */}
+      <div className="lg:hidden absolute inset-0 overflow-hidden">
+        <div
+          className="flex h-full transition-transform ease-in-out"
+          style={{
+            width: `${slides.length * 100}%`,
+            transform: `translateX(-${current * (100 / slides.length)}%)`,
+            transitionDuration: "800ms",
+          }}
+        >
+          {slides.map((src, idx) => (
+            <img
+              key={idx}
+              src={src}
+              alt=""
+              aria-hidden="true"
+              className="h-full object-cover flex-shrink-0"
+              style={{ width: `${100 / slides.length}%` }}
+            />
+          ))}
+        </div>
+      </div>
       {/* Mobile spacer */}
       <div className="lg:hidden w-full" style={{ minHeight: "100svh" }} />
 
@@ -70,7 +87,7 @@ export default function Hero() {
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrent(idx)}
+            onClick={() => goToSlide(idx)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               idx === current ? "bg-gold scale-110" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
             }`}
@@ -108,10 +125,6 @@ export default function Hero() {
                 padding: 80px 0 !important;
                 margin-left: clamp(50px, 5vw, 100px) !important;
               }
-            }
-            @keyframes slideInFromRight {
-              from { transform: translateX(100%); }
-              to { transform: translateX(0); }
             }
           `}</style>
 
