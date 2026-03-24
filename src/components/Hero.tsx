@@ -47,7 +47,16 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 flex flex-col lg:flex-row items-stretch justify-between gap-8">
 
         {/* ── Left: Text content ── */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:max-w-[55%]" style={{ padding: "80px 0", marginLeft: "clamp(50px, 5vw, 100px)" }}>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:max-w-[55%]" style={{ padding: "40px 0", marginLeft: "0" }} 
+          data-desktop-style="true">
+          <style>{`
+            @media (min-width: 1024px) {
+              [data-desktop-style="true"] {
+                padding: 80px 0 !important;
+                margin-left: clamp(50px, 5vw, 100px) !important;
+              }
+            }
+          `}</style>
 
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-gold/10 mb-6 backdrop-blur-sm">
