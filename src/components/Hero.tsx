@@ -29,7 +29,7 @@ export default function Hero() {
       {/* Overlay + content on top of image */}
       <div className="absolute inset-0 z-[1] flex items-center justify-center"
         style={{
-          background: "linear-gradient(to right, hsl(220 60% 20% / 1) 0%, hsl(220 60% 20% / 0.8) 40%, hsl(220 60% 20% / 0.2) 100%)"
+          background: "linear-gradient(to right, hsl(220 60% 20% / 0.65) 0%, hsl(220 60% 20% / 0.5) 40%, hsl(220 60% 20% / 0.2) 100%)"
         }}>
 
       {/* Decorative gradient orbs */}
