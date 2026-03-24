@@ -6,9 +6,8 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      aria-label="Apresentação - Marido de Aluguel Pomerode"
-      style={{ minHeight: "100vh" }}>
+      className="relative flex items-center justify-center overflow-hidden"
+      aria-label="Apresentação - Marido de Aluguel Pomerode">
 
       {/* Background image */}
       <img
