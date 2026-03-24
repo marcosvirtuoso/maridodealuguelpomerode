@@ -75,11 +75,11 @@ export default function Sobre() {
             </div>
 
             <p className="text-muted-foreground text-base lg:text-lg leading-relaxed" itemProp="description">
-              Sou especialista em <strong className="text-foreground">serviços residenciais em Pomerode</strong> e região. Atuo com reparos elétricos, hidráulicos, montagem de móveis e instalações residenciais — sempre com foco em qualidade, segurança e eficiência.
+              Sou da <strong className="text-foreground">NovoLar Instalações e reparos residenciais em Pomerode</strong> e região. Atuo com reparos elétricos, hidráulicos, montagem de móveis e instalações residenciais de diversos equipamentos como, Utilidades para a casa toda, instalo coifas de ilha, de parede, chuveiros, lava-louça, gabinetes para o banheiro, cubas, torneiras, painel de TV, suporte de TV simples e articulado, — sempre com foco deixar tudo perfeito, com qualidade, segurança, eficiência e preço justo.
             </p>
 
             <p className="text-muted-foreground text-base leading-relaxed">
-              Entendo que sua casa é o lugar mais importante para você e sua família. Por isso, trabalho com <strong className="text-foreground">agendamento exclusivo</strong>, garantindo pontualidade, atenção total ao serviço e respeito ao seu espaço.
+              Entendo que sua casa é o lugar mais importante para você e sua família. Por isso, trabalho com <strong className="text-foreground">agendamento exclusivo</strong>, garantindo pontualidade, atenção total ao serviço e respeito ao seu espaço. Mas atendo emergências também, basta entrar em contato e solicitar minha disponibilidade, será um prazer poder ajudar.
             </p>
 
             <blockquote className="border-l-4 border-gold pl-5 py-1">
