@@ -9,13 +9,12 @@ export default function Hero() {
       className="relative flex items-center justify-center overflow-hidden"
       aria-label="Apresentação - Marido de Aluguel Pomerode">
 
-      {/* Background image */}
+      {/* Background image — defines section height */}
       <img
         src={bannerBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        style={{ backgroundColor: "hsl(220 50% 12%)" }}
+        className="w-full h-auto block"
       />
 
       {/* Gradient overlay 20% → 40% */}
