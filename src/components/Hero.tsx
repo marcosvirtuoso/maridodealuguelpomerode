@@ -9,13 +9,22 @@ export default function Hero() {
       className="relative flex items-center justify-center overflow-hidden"
       aria-label="Apresentação - Marido de Aluguel Pomerode">
 
-      {/* Background image — defines section height */}
+      {/* Background image — natural size on desktop, cover on mobile */}
       <img
         src={bannerBg}
         alt=""
         aria-hidden="true"
-        className="w-full h-auto block"
+        className="hidden lg:block w-full h-auto"
       />
+      {/* Mobile: absolute cover image so section can grow with content */}
+      <img
+        src={bannerBg}
+        alt=""
+        aria-hidden="true"
+        className="lg:hidden absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Mobile spacer to give min height */}
+      <div className="lg:hidden w-full" style={{ minHeight: "100svh" }} />
 
       {/* Overlay + content on top of image */}
       <div className="absolute inset-0 flex items-center justify-center"
