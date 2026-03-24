@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import bannerMain from "@/assets/banner_Novolar_main.jpg";
+import bannerMobile from "@/assets/banner_Novolar_mobile.jpg";
 
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
