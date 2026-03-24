@@ -27,10 +27,6 @@ export default function Hero() {
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(goToNext, 5000);
-    return () => clearInterval(timer);
-  }, [goToNext]);
 
   return (
     <section
