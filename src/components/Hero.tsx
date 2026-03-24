@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import bannerBg1 from "@/assets/banner_Novolar.jpg";
 import bannerBg2 from "@/assets/banner_Novolar_2.jpg";
 
@@ -8,14 +8,23 @@ const slides = [bannerBg1, bannerBg2];
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
-  const goToNext = useCallback(() => {
-    setIsTransitioning(true);
-    setTimeout(() => {
+  const goToSlide = (idx: number) => {
+    if (isAnimating || idx === current) return;
+    setIsAnimating(true);
+    setCurrent(idx);
+    setTimeout(() => setIsAnimating(false), 800);
+  };
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setIsAnimating(true);
       setCurrent((prev) => (prev + 1) % slides.length);
-      setIsTransitioning(false);
-    }, 700);
+      setTimeout(() => setIsAnimating(false), 800);
+    }, 5000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
 
   useEffect(() => {
