@@ -126,10 +126,6 @@ export default function Hero() {
                 margin-left: clamp(50px, 5vw, 100px) !important;
               }
             }
-            @keyframes slideInFromRight {
-              from { transform: translateX(100%); }
-              to { transform: translateX(0); }
-            }
           `}</style>
 
           {/* Badge */}
