@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="lg:hidden w-full" style={{ minHeight: "100svh" }} />
 
       {/* Overlay + content on top of image */}
-      <div className="absolute inset-0 flex items-center justify-center"
+      <div className="absolute inset-0 z-[1] flex items-center justify-center"
         style={{
           background: "linear-gradient(to right, hsl(220 60% 20% / 0.6), hsl(220 60% 20% / 0.2))"
         }}>
