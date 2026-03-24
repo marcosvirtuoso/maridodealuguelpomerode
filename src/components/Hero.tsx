@@ -1,4 +1,4 @@
-import logoImage from "@/assets/Logo_novolarinstalacoes.png";
+
 
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
