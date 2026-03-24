@@ -1,4 +1,4 @@
-
+import bannerBg from "@/assets/banner_Novolar.jpg";
 
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
@@ -10,8 +10,21 @@ export default function Hero() {
       aria-label="Apresentação - Marido de Aluguel Pomerode"
       style={{ minHeight: "100vh" }}>
 
-      {/* Background */}
-      <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
+      {/* Background image */}
+      <img
+        src={bannerBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Gradient overlay 20% → 40% */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, hsla(var(--navy-dark), 0.2), hsla(var(--navy-dark), 0.4))"
+        }}
+      />
 
       {/* Decorative gradient orbs */}
       <div
