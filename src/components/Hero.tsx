@@ -69,7 +69,7 @@ export default function Hero() {
             A solução certa para o seu lar.
           </p>
 
-          <p className="text-sm text-gold/90 font-medium mb-10 max-w-md">
+          <p className="text-xs text-gold/90 font-medium mb-10 max-w-md">
             Solução mais eficiente e segura que você procura para o seu lar. ✓
           </p>
 
