@@ -22,7 +22,7 @@ export default function Hero() {
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(to bottom, hsla(var(--navy-dark), 0.2), hsla(var(--navy-dark), 0.4))"
+          background: "linear-gradient(to bottom, hsl(220 50% 15% / 0.2), hsl(220 50% 15% / 0.4))"
         }}
       />
 
