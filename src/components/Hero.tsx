@@ -5,24 +5,35 @@ import bannerBg2 from "@/assets/banner_Novolar_2.jpg";
 const WHATSAPP_URL = "https://wa.me/5547988582480?text=Olá%20Marcos!%20Gostaria%20de%20agendar%20um%20serviço.";
 
 const slides = [bannerBg1, bannerBg2];
+// Add clone of first slide at the end for seamless looping
+const loopSlides = [...slides, slides[0]];
+const totalSlides = loopSlides.length;
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [hasTransition, setHasTransition] = useState(true);
   const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
-  const goToSlide = (idx: number) => {
-    if (isAnimating || idx === current) return;
-    setIsAnimating(true);
-    setCurrent(idx);
-    setTimeout(() => setIsAnimating(false), 800);
-  };
+  // When we land on the clone (last), instantly jump to real first
+  useEffect(() => {
+    if (current === slides.length) {
+      const timeout = setTimeout(() => {
+        setHasTransition(false);
+        setCurrent(0);
+        // Re-enable transition after the instant jump
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setHasTransition(true);
+          });
+        });
+      }, 800);
+      return () => clearTimeout(timeout);
+    }
+  }, [current]);
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setIsAnimating(true);
-      setCurrent((prev) => (prev + 1) % slides.length);
-      setTimeout(() => setIsAnimating(false), 800);
+      setCurrent((prev) => prev + 1);
     }, 5000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
@@ -37,21 +48,21 @@ export default function Hero() {
       {/* Carousel background — desktop: strip of all slides side by side */}
       <div className="hidden lg:block w-full overflow-hidden relative">
         <div
-          className="flex transition-transform duration-800 ease-in-out"
+          className="flex ease-in-out"
           style={{
-            width: `${slides.length * 100}%`,
-            transform: `translateX(-${current * (100 / slides.length)}%)`,
-            transitionDuration: "800ms",
+            width: `${totalSlides * 100}%`,
+            transform: `translateX(-${current * (100 / totalSlides)}%)`,
+            transition: hasTransition ? "transform 800ms ease-in-out" : "none",
           }}
         >
-          {slides.map((src, idx) => (
+          {loopSlides.map((src, idx) => (
             <img
               key={idx}
               src={src}
               alt=""
               aria-hidden="true"
               className="w-full h-auto flex-shrink-0"
-              style={{ width: `${100 / slides.length}%` }}
+              style={{ width: `${100 / totalSlides}%` }}
             />
           ))}
         </div>
@@ -60,21 +71,21 @@ export default function Hero() {
       {/* Mobile: same strip approach with cover */}
       <div className="lg:hidden absolute inset-0 overflow-hidden">
         <div
-          className="flex h-full transition-transform ease-in-out"
+          className="flex h-full ease-in-out"
           style={{
-            width: `${slides.length * 100}%`,
-            transform: `translateX(-${current * (100 / slides.length)}%)`,
-            transitionDuration: "800ms",
+            width: `${totalSlides * 100}%`,
+            transform: `translateX(-${current * (100 / totalSlides)}%)`,
+            transition: hasTransition ? "transform 800ms ease-in-out" : "none",
           }}
         >
-          {slides.map((src, idx) => (
+          {loopSlides.map((src, idx) => (
             <img
               key={idx}
               src={src}
               alt=""
               aria-hidden="true"
               className="h-full object-cover flex-shrink-0"
-              style={{ width: `${100 / slides.length}%` }}
+              style={{ width: `${100 / totalSlides}%` }}
             />
           ))}
         </div>
@@ -87,9 +98,14 @@ export default function Hero() {
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => goToSlide(idx)}
+            onClick={() => {
+              if (idx !== current % slides.length) {
+                setHasTransition(true);
+                setCurrent(idx);
+              }
+            }}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              idx === current ? "bg-gold scale-110" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
+              idx === current % slides.length ? "bg-gold scale-110" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
             }`}
             aria-label={`Slide ${idx + 1}`}
           />
