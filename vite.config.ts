@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+// @ts-expect-error - JS module without types
 import seoPrerender from "./scripts/seo-prerender.mjs";
 
 // https://vitejs.dev/config/
