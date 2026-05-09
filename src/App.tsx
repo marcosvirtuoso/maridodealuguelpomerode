@@ -4,20 +4,28 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
-import AdminCategories from "./pages/AdminCategories";
-import AdminArticles from "./pages/AdminArticles";
-import AdminArticleEditor from "./pages/AdminArticleEditor";
-import AdminServicePages from "./pages/AdminServicePages";
-import AdminServicePageEditor from "./pages/AdminServicePageEditor";
 import ArticlePage from "./pages/ArticlePage";
 import CategoryPage from "./pages/CategoryPage";
 import ServicePage from "./pages/ServicePage";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
+
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const AdminCategories = lazy(() => import("./pages/AdminCategories"));
+const AdminArticles = lazy(() => import("./pages/AdminArticles"));
+const AdminArticleEditor = lazy(() => import("./pages/AdminArticleEditor"));
+const AdminServicePages = lazy(() => import("./pages/AdminServicePages"));
+const AdminServicePageEditor = lazy(() => import("./pages/AdminServicePageEditor"));
+
+const AdminFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <p className="text-muted-foreground">Carregando…</p>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -30,6 +38,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <WhatsAppButton />
+          <Suspense fallback={<AdminFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/admin/login" element={<AdminLogin />} />
@@ -44,6 +53,7 @@ const App = () => (
             <Route path="/:categorySlug/:articleSlug" element={<ArticlePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

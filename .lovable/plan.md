@@ -1,66 +1,87 @@
+## Contexto técnico
 
+A SPA Vite + React Router roda na hospedagem estática da Lovable, que **não suporta SSR Node em runtime**. A solução SEO-friendly equivalente é **prerendering em build-time**: gerar arquivos HTML reais para cada rota pública (home, categorias, artigos, páginas de serviço), com canonical, meta tags e conteúdo já renderizados. Googlebot recebe HTML completo sem depender de JS.
 
-## Plano: Páginas Individuais para Tópicos de Serviços
+## Decisões confirmadas
 
-### Resumo
+- Trailing slash **com barra final** em canonicals e sitemap; React Router aceita as duas formas.
+- FAQ schema: pulado.
+- `sameAs`: `https://instagram.com/maridodealuguepomerode`.
+- LocalBusiness: `areaServed = Pomerode, SC` (sem endereço físico).
 
-Criar um sistema no painel admin para gerenciar páginas individuais de cada tópico dos cards de serviços (ex: "Instalação de tomadas e interruptores"). Cada tópico terá uma página dedicada com a identidade visual do site (Navbar + Footer), e o nome do tópico no card se tornará um link clicável quando a página existir.
+---
 
-### Estrutura de URLs
+## 1. Domínio canônico único
+
+`src/lib/seo.ts`:
+- `CANONICAL_HOST = "https://novolarinstalacoes.com.br"`
+- `buildCanonical(path)` → força https, remove `www.`, remove query/hash, garante trailing slash.
+- `DEFAULT_OG_IMAGE`, `BUSINESS_INFO` (nome, telefone, instagram, areaServed).
+
+Substituir todos os `window.location.origin` em `ServicePage.tsx`, `ArticlePage.tsx`, `CategoryPage.tsx` por `CANONICAL_HOST` (corrige canonicals e og:url que hoje vazam o domínio de preview/lovable.app).
+
+## 2. Componente `<SEO />` reutilizável
+
+`src/components/SEO.tsx` baseado em `react-helmet-async`, aceita `title`, `description`, `path`, `image?`, `type?`, `jsonLd?`. Emite `<title>`, description, canonical, og:* (title/description/url/type/image), twitter:* (card/title/description/image) e tags JSON-LD em um único lugar.
+
+Aplicar em:
+- `Index.tsx` (hoje sem `<Helmet>`).
+- `CategoryPage.tsx`, `ArticlePage.tsx`, `ServicePage.tsx` (substitui Helmet inline).
+- `NotFound.tsx` com `<meta name="robots" content="noindex">`.
+- Páginas admin recebem `noindex,nofollow`.
+
+## 3. JSON-LD estruturado
+
+- **LocalBusiness global** em `Index.tsx` (NovoLar Instalações, telefone +55 47 98858-2480, areaServed Pomerode/SC, url canônico, sameAs Instagram).
+- **Service schema** em ServicePage (manter, corrigir host).
+- **BreadcrumbList** em ServicePage/ArticlePage/CategoryPage (usar `CANONICAL_HOST`).
+- **Article schema** em ArticlePage (corrigir `mainEntityOfPage`).
+
+## 4. Prerender estático em build-time
+
+Adicionar dev deps: `puppeteer` + `serve-handler`. Novo `scripts/prerender.mjs`:
+
+1. Após `vite build`, sobe servidor estático sobre `dist/`.
+2. Busca via REST do Supabase (anon key do `.env`) os slugs publicados de `service_pages`, `articles`+categoria e lista de `categories`.
+3. Para cada rota pública (`/`, `/{categoria}`, `/{categoria}/{artigo}`, `/servicos/{slug}`) abre Puppeteer headless, espera `h1` montar e React Query hidratar, serializa `document.documentElement.outerHTML` e grava em `dist/<rota>/index.html`.
+4. Rotas admin ficam fora — atendidas pelo fallback SPA.
+
+Atualizar `package.json`: `build = vite build && node scripts/generate-sitemap.mjs && node scripts/prerender.mjs`.
+
+`index.html` ganha fallback mínimo dentro de `<div id="root">` (logo + H1 "NovoLar Instalações — Marido de Aluguel em Pomerode" + telefone) e `<link rel="preconnect">` para Google Fonts e domínio Supabase.
+
+## 5. Sitemap dinâmico
+
+`scripts/generate-sitemap.mjs` lê os slugs via Supabase e regenera `public/sitemap.xml` com `https://novolarinstalacoes.com.br` (com trailing slash). Roda dentro do `npm run build` antes do prerender.
+
+## 6. Performance / Core Web Vitals
+
+- `loading="eager"` + `fetchpriority="high"` na imagem do hero; `loading="lazy"` no resto.
+- `<link rel="preload" as="image">` para o banner do hero no `index.html`.
+- `<link rel="preconnect">` para fontes e Supabase.
+- Code-split das rotas admin via `React.lazy` em `App.tsx` para reduzir bundle público.
+
+## 7. Estrutura de headings
+
+Auditar componentes da home (Hero, Servicos, Diferenciais, Sobre, Mapa, Contato, Footer, Navbar) para garantir um único `<h1>` por rota e hierarquia H1 → H2 → H3.
+
+---
+
+## Estrutura
 
 ```text
-/servicos/instalacao-de-tomadas-e-interruptores
-/servicos/instalacao-de-luminarias-e-lustres
-/servicos/instalacao-de-lava-louca
-...
+src/
+  lib/seo.ts                    # CANONICAL_HOST, buildCanonical, BUSINESS_INFO
+  components/SEO.tsx            # wrapper Helmet único
+  pages/
+    Index.tsx                   # + <SEO> + LocalBusiness JSON-LD
+    CategoryPage.tsx
+    ArticlePage.tsx
+    ServicePage.tsx
+    NotFound.tsx                # noindex
+scripts/
+  generate-sitemap.mjs
+  prerender.mjs
+package.json                    # build = vite build + sitemap + prerender
+index.html                      # fallback content + preloads
 ```
-
-### O que será feito
-
-**1. Nova tabela no banco de dados: `service_pages`**
-- `id`, `service_name` (nome exato do tópico), `slug`, `title` (H1 da página), `subtitle` (H2), `content` (texto), `featured_image_url`, `meta_title`, `meta_description`, `meta_keywords`, `status` (draft/published), `created_at`, `updated_at`
-- RLS: leitura pública para publicados, CRUD restrito a admins
-
-**2. Painel Admin — Gerenciamento de Páginas de Serviços**
-- Nova seção no dashboard: "Páginas de Serviços"
-- Lista todos os tópicos dos cards agrupados por categoria
-- Indicador visual de quais já têm página criada vs. pendentes
-- Ao clicar num tópico, abre editor (reutiliza o modelo do editor de artigos) com:
-  - Título (H1), subtítulo (H2), imagem, conteúdo, campos SEO
-  - O `service_name` e `slug` são pré-preenchidos automaticamente
-  - Preview Google e URL
-
-**3. Página pública template: `/servicos/:slug`**
-- Navbar + conteúdo + Footer (mesma identidade do site)
-- SEO completo: Helmet, JSON-LD Schema.org/Service, breadcrumb
-- Botão CTA WhatsApp contextual ao serviço
-
-**4. Cards de serviços — links clicáveis**
-- Cada tópico no card verifica se existe uma `service_page` publicada
-- Se existir, o nome vira um link para `/servicos/slug`
-- Se não existir, permanece texto normal (sem link)
-
-**5. Rota e navegação**
-- Nova rota: `/servicos/:slug` → `ServicePage.tsx`
-- Link "Páginas de Serviços" no menu do admin dashboard
-- Nova rota admin: `/admin/servicos` (lista) e `/admin/servicos/:id` (editor)
-
-### Detalhes técnicos
-
-- A tabela `service_pages` terá constraint unique no `slug`
-- O componente `Servicos.tsx` fará um query para buscar slugs de páginas publicadas e renderizar links condicionalmente
-- O editor reutiliza o componente `ImageUpload` já existente
-- A página pública segue o mesmo padrão do `ArticlePage.tsx` (Helmet, JSON-LD, breadcrumb)
-
-### Arquivos a criar/editar
-
-| Ação | Arquivo |
-|------|---------|
-| Criar | `src/pages/AdminServicePages.tsx` (lista) |
-| Criar | `src/pages/AdminServicePageEditor.tsx` (editor) |
-| Criar | `src/pages/ServicePage.tsx` (página pública) |
-| Editar | `src/components/Servicos.tsx` (links clicáveis) |
-| Editar | `src/pages/AdminDashboard.tsx` (card novo) |
-| Editar | `src/App.tsx` (novas rotas) |
-| Migração | Criar tabela `service_pages` + RLS |
-

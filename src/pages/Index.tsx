@@ -6,11 +6,26 @@ import Sobre from "@/components/Sobre";
 import Mapa from "@/components/Mapa";
 import Contato from "@/components/Contato";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { localBusinessJsonLd, CANONICAL_HOST } from "@/lib/seo";
 
 const Index = () => {
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "NovoLar Instalações",
+    url: CANONICAL_HOST,
+    inLanguage: "pt-BR",
+  };
   return (
     <>
-      {/* SEO meta is set via index.html */}
+      <SEO
+        title="NovoLar Instalações | Marido de Aluguel em Pomerode SC"
+        description="Instalações e reparos residenciais em Pomerode e região: elétrica, hidráulica, montagem de móveis e instalações em geral. Atendimento por agendamento."
+        path="/"
+        type="website"
+        jsonLd={[localBusinessJsonLd, websiteJsonLd]}
+      />
       <Navbar />
       <main className="pt-16 sm:pt-[72px]">
         <Hero />
