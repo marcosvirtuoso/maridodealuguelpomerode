@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+import { CANONICAL_HOST, buildCanonical } from "@/lib/seo";
 
 export default function CategoryPage() {
   const { categorySlug } = useParams();
@@ -57,10 +58,20 @@ export default function CategoryPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{data.category.name} | Marido de Aluguel Pomerode</title>
-        <meta name="description" content={data.category.description || `Artigos sobre ${data.category.name} — Marido de Aluguel Pomerode`} />
-      </Helmet>
+      <SEO
+        title={`${data.category.name} em Pomerode | NovoLar Instalações`}
+        description={data.category.description || `Artigos e serviços sobre ${data.category.name} em Pomerode e região — NovoLar Instalações.`}
+        path={`/${data.category.slug}`}
+        type="website"
+        jsonLd={[{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Início", item: CANONICAL_HOST + "/" },
+            { "@type": "ListItem", position: 2, name: data.category.name, item: buildCanonical(`/${data.category.slug}`) },
+          ],
+        }]}
+      />
 
       <Navbar />
       <main className="bg-background min-h-screen">
