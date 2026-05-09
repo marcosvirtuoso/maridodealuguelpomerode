@@ -7,7 +7,8 @@ import Diferenciais from "@/components/Diferenciais";
 import Sobre from "@/components/Sobre";
 import Mapa from "@/components/Mapa";
 import Contato from "@/components/Contato";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+import { CANONICAL_HOST, buildCanonical, BUSINESS_INFO } from "@/lib/seo";
 
 export default function ServicePage() {
   const { slug } = useParams();
@@ -63,38 +64,36 @@ export default function ServicePage() {
     image: page.featured_image_url || "",
     provider: {
       "@type": "LocalBusiness",
-      name: "Marido de Aluguel Pomerode",
-      telephone: "+5547988582480",
-      areaServed: { "@type": "City", name: "Pomerode" },
+      name: BUSINESS_INFO.name,
+      telephone: BUSINESS_INFO.telephone,
+      url: CANONICAL_HOST,
+      areaServed: { "@type": "City", name: BUSINESS_INFO.areaServed },
     },
-    areaServed: { "@type": "City", name: "Pomerode" },
+    areaServed: { "@type": "City", name: BUSINESS_INFO.areaServed },
+    url: buildCanonical(`/servicos/${page.slug}`),
   };
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Início", item: window.location.origin },
-      { "@type": "ListItem", position: 2, name: "Serviços", item: `${window.location.origin}/#servicos` },
-      { "@type": "ListItem", position: 3, name: page.title, item: `${window.location.origin}/servicos/${page.slug}` },
+      { "@type": "ListItem", position: 1, name: "Início", item: CANONICAL_HOST + "/" },
+      { "@type": "ListItem", position: 2, name: "Serviços", item: CANONICAL_HOST + "/#servicos" },
+      { "@type": "ListItem", position: 3, name: page.title, item: buildCanonical(`/servicos/${page.slug}`) },
     ],
   };
 
   return (
     <>
-      <Helmet>
-        <title>{page.meta_title || page.title} | Marido de Aluguel Pomerode</title>
-        <meta name="description" content={page.meta_description || page.subtitle || page.title} />
-        {page.meta_keywords && <meta name="keywords" content={page.meta_keywords} />}
-        <meta property="og:title" content={page.meta_title || page.title} />
-        <meta property="og:description" content={page.meta_description || page.subtitle || ""} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${window.location.origin}/servicos/${page.slug}`} />
-        {page.featured_image_url && <meta property="og:image" content={page.featured_image_url} />}
-        <link rel="canonical" href={`${window.location.origin}/servicos/${page.slug}`} />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
-      </Helmet>
+      <SEO
+        title={`${page.meta_title || page.title} | NovoLar Instalações Pomerode`}
+        description={page.meta_description || page.subtitle || page.title}
+        path={`/servicos/${page.slug}`}
+        image={page.featured_image_url || undefined}
+        type="website"
+        keywords={page.meta_keywords || undefined}
+        jsonLd={[jsonLd, breadcrumbLd]}
+      />
 
       <Navbar />
       <main className="bg-background">
