@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+import { CANONICAL_HOST, buildCanonical } from "@/lib/seo";
 
 export default function ArticlePage() {
   const { categorySlug, articleSlug } = useParams();
@@ -75,31 +76,36 @@ export default function ArticlePage() {
     },
     publisher: {
       "@type": "Organization",
-      name: "Marido de Aluguel Pomerode",
+      name: "NovoLar Instalações",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${window.location.origin}/${article.category.slug}/${article.slug}`,
+      "@id": buildCanonical(`/${article.category.slug}/${article.slug}`),
     },
     keywords: article.meta_keywords || "",
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: CANONICAL_HOST + "/" },
+      { "@type": "ListItem", position: 2, name: article.category.name, item: buildCanonical(`/${article.category.slug}`) },
+      { "@type": "ListItem", position: 3, name: article.title, item: buildCanonical(`/${article.category.slug}/${article.slug}`) },
+    ],
+  };
+
   return (
     <>
-      <Helmet>
-        <title>{article.meta_title || article.title} | Marido de Aluguel Pomerode</title>
-        <meta name="description" content={article.meta_description || article.subtitle || article.title} />
-        {article.meta_keywords && <meta name="keywords" content={article.meta_keywords} />}
-        <meta property="og:title" content={article.meta_title || article.title} />
-        <meta property="og:description" content={article.meta_description || article.subtitle || ""} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`${window.location.origin}/${article.category.slug}/${article.slug}`} />
-        {(article.og_image_url || article.featured_image_url) && (
-          <meta property="og:image" content={article.og_image_url || article.featured_image_url!} />
-        )}
-        <link rel="canonical" href={article.canonical_url || `${window.location.origin}/${article.category.slug}/${article.slug}`} />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
+      <SEO
+        title={`${article.meta_title || article.title} | NovoLar Instalações Pomerode`}
+        description={article.meta_description || article.subtitle || article.title}
+        path={`/${article.category.slug}/${article.slug}`}
+        image={article.og_image_url || article.featured_image_url || undefined}
+        type="article"
+        keywords={article.meta_keywords || undefined}
+        jsonLd={[jsonLd, breadcrumbLd]}
+      />
 
       <Navbar />
       <main className="bg-background min-h-screen">
